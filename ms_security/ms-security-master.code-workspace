@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"name": "ms-security-master",
+			"path": "."
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "interactive"
+	}
+}
