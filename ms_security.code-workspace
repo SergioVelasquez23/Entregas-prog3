@@ -1,0 +1,11 @@
+{
+  "folders": [
+	{
+		"name": "ms_security",
+		"path": "."
+	}
+],
+  "settings": {
+    "java.configuration.updateBuildConfiguration": "interactive"
+  }
+}
