@@ -4,7 +4,7 @@ import Operario from 'App/Models/Operario'
 import TipoServicio from './TipoServicio'
 import Poliza from './Poliza'
 import Combo from './Combo'
-import Gp from './Gp'
+import Gp from './Gps'
 import Mantenimiento from './Mantenimiento'
 import Seguro from './Seguro'
 

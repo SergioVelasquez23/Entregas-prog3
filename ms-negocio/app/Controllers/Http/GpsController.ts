@@ -1,5 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Gp from 'App/Models/Gp';
+import Gp from 'App/Models/Gps';
 
 export default class GpsController {
     public async find({ request, params }: HttpContextContract) {
