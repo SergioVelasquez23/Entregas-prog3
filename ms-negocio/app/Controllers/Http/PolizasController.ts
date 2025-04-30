@@ -1,5 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Poliza from 'App/Models/Poliza'
+import PolizaValidator from 'App/Validators/PolizaValidator'
+
 
 export default class PolizasController {
   public async find({ request, params }: HttpContextContract) {
@@ -19,35 +21,64 @@ export default class PolizasController {
   }
 
   public async create({ request, response }: HttpContextContract) {
-    const body = request.body()
+    const body = await request.validate(PolizaValidator)
 
-    // ⚠️ Validación XOR
-    if ((body.operarioId && body.maquinaId) || (!body.operarioId && !body.maquinaId)) {
+    // Validación XOR y tipo de póliza
+    if ((body.operario_id && body.maquina_id) || (!body.operario_id && !body.maquina_id)) {
       return response.badRequest({
-        message:
-          'La póliza debe estar asociada a un operario o a una máquina, pero no a ambos o ninguno.',
+        message: 'La póliza debe estar asociada a un operario o a una máquina, pero no a ambos o ninguno.',
       })
     }
 
-    const thePoliza: Poliza = await Poliza.create(body)
+    if (body.operario_id) {
+      return response.badRequest({
+        message: 'El tipo de póliza no es válido para un operario.',
+      })
+    }
+
+    if (body.maquina_id ) {
+      return response.badRequest({
+        message: 'El tipo de póliza no es válido para una maquinaria.',
+      })
+    }
+
+    const thePoliza: Poliza = await Poliza.create({
+      seguro_id: body.seguro_id,
+      maquina_id: body.maquina_id || null,
+      operario_id: body.operario_id || null,
+      fechaInicio: body.fechaInicio,
+      fechaFin: body.fechaFin,
+    })
+
     return thePoliza
   }
 
   public async update({ params, request, response }: HttpContextContract) {
     const thePoliza: Poliza = await Poliza.findOrFail(params.id)
-    const body = request.body()
+    const body = await request.validate(PolizaValidator)
 
-    // ⚠️ Validación XOR
-    if ((body.operarioId && body.maquinaId) || (!body.operarioId && !body.maquinaId)) {
+    // Validación XOR y tipo de póliza
+    if ((body.operario_id && body.maquina_id) || (!body.operario_id && !body.maquina_id)) {
       return response.badRequest({
-        message:
-          'La póliza debe estar asociada a un operario o a una máquina, pero no a ambos o ninguno.',
+        message: 'La póliza debe estar asociada a un operario o a una máquina, pero no a ambos o ninguno.',
       })
     }
 
-    thePoliza.seguro_id = body.seguroId
-    thePoliza.maquina_id = body.maquinaId
-    thePoliza.operario_id = body.operarioId
+    if (body.operario_id ) {
+      return response.badRequest({
+        message: 'El tipo de póliza no es válido para un operario.',
+      })
+    }
+
+    if (body.maquina_id ) {
+      return response.badRequest({
+        message: 'El tipo de póliza no es válido para una maquinaria.',
+      })
+    }
+
+    thePoliza.seguro_id = body.seguro_id
+    thePoliza.maquina_id = body.maquina_id || null
+    thePoliza.operario_id = body.operario_id || null
     thePoliza.fechaInicio = body.fechaInicio
     thePoliza.fechaFin = body.fechaFin
 

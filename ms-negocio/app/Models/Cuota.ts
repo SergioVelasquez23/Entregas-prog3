@@ -4,6 +4,8 @@ import Factura from './Factura'
 import Servicio from './Servicio'
 
 export default class Cuota extends BaseModel {
+
+  public static table = "cuotas"
   @column({ isPrimary: true })
   public id: number
 
@@ -17,12 +19,12 @@ export default class Cuota extends BaseModel {
   public updatedAt: DateTime
 
   @hasOne(() => Factura, {
-    foreignKey: 'idCuota',
+    foreignKey: 'id_cuota',
   })
   public factura: HasOne<typeof Factura>  
 
   @belongsTo(() => Servicio, {
-    foreignKey: 'idServicio',
+    foreignKey: 'id_servicio',
   })
   public servicio: BelongsTo<typeof Servicio>
 }

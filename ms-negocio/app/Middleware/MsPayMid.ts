@@ -11,7 +11,7 @@ export default class MsPaymentsMid {
     console.log("Request recibido:", theRequest);
 
     // Verificar si existe el header de autorización
-    if (!theRequest.headers.authorization) {
+    if (!theRequest.headers.authorization) {  
       console.log("Falta el token de autorización");
       return response
         .status(401)

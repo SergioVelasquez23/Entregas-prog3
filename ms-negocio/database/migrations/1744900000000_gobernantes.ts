@@ -11,8 +11,8 @@ export default class extends BaseSchema {
       table.string('nombre').notNullable()
       table.string('periodo_init').notNullable(),
       table.string('periodo_end').notNullable(),
-      table.integer('idDepartamento').unsigned().references('id').inTable('departamentos').onDelete('CASCADE')
-      table.integer('idMunicipio').unsigned().references('id').inTable('municipios').onDelete('CASCADE')
+      table.integer('id_departamento').unsigned().references('id').inTable('departamentos').onDelete('CASCADE')
+      table.integer('id_municipio').unsigned().references('id').inTable('municipios').onDelete('CASCADE')
 
       /**
        * Uses integer as PostgreSQL and BIGINT as MSSQL

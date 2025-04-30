@@ -11,7 +11,7 @@ export default class Municipio extends BaseModel {
   public nombre: string
 
   @column()
-  public idDepartamento: number
+  public idepartamento: number
   // Foreign key to Departamento table
 
   @column.dateTime({ autoCreate: true })
