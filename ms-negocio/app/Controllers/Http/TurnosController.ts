@@ -1,5 +1,8 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Turno from 'App/Models/Turno';
+import Turno from 'App/Models/Turno'
+import TurnoValidator from 'App/Validators/TurnoValidator';
+
+import { DateTime } from 'luxon'
 
 export default class TurnosController {
     public async find({ request, params }: HttpContextContract) {
@@ -19,25 +22,29 @@ export default class TurnosController {
         }
 
     }
+
     public async create({ request }: HttpContextContract) {
-        const body = request.body();
-        const theTurno: Turno = await Turno.create(body);
-        return theTurno;
+        const payload = await request.validate(TurnoValidator)
+        const theTurno: Turno = await Turno.create({
+            fecha: payload.fecha,
+            operario_id: payload.operario_id,
+            maquina_id: payload.maquina_id
+        })
+        return theTurno
     }
 
     public async update({ params, request }: HttpContextContract) {
-        const theTurno: Turno = await Turno.findOrFail(params.id);
-        const body = request.body();
-        theTurno.fecha = body.fecha;
-        theTurno.hora = body.hora;
-        theTurno.operario_id = body.operarioId;
-        theTurno.maquina_id = body.maquinaId;
-        return await theTurno.save();
+        const theTurno: Turno = await Turno.findOrFail(params.id)
+        const payload = await request.validate(TurnoValidator)
+        theTurno.fecha = payload.fecha
+        theTurno.operario_id = payload.operario_id
+        theTurno.maquina_id = payload.maquina_id
+        return await theTurno.save()
     }
 
     public async delete({ params, response }: HttpContextContract) {
-        const theTurno: Turno = await Turno.findOrFail(params.id);
-            response.status(204);
-            return await theTurno.delete();
+        const theTurno: Turno = await Turno.findOrFail(params.id)
+        response.status(204)
+        return await theTurno.delete()
     }
 }

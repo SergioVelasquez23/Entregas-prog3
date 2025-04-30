@@ -16,7 +16,7 @@ export default class Evidencia extends BaseModel {
   public fecha_de_carga: DateTime
 
   @column()
-  public idServicio: number
+  public id_servicio: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -25,7 +25,7 @@ export default class Evidencia extends BaseModel {
   public updatedAt: DateTime
 
   @belongsTo(() => Servicio, {
-    foreignKey: 'idServicio',
+    foreignKey: 'id_servicio',
   })
   public servicio: BelongsTo<typeof Servicio>
 }

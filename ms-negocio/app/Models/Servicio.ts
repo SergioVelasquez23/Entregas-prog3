@@ -33,7 +33,7 @@ export default class Servicio extends BaseModel {
   public resumen: string
 
   @column()
-  public idEvidencia: number
+  public id_evidencia: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

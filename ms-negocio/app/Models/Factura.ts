@@ -9,7 +9,7 @@ export default class Factura extends BaseModel {
   public detalle: string
 
   @column()
-  public idCuota: number
+  public id_cuota: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

@@ -3,14 +3,20 @@ import { BaseModel, column, hasMany, manyToMany, ManyToMany, HasMany } from '@io
 import Especialidad from 'App/Models/Especialidad'
 import Maquina from 'App/Models/Maquina'
 import Seguro from './Seguro'
-import Usuario from './Usuario'
 
-export default class Operario extends Usuario {
+
+export default class Operario extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
   @column()
   public experiencia: string
+
+  @column()
+  public email: string
+
+  @column()
+  public password: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

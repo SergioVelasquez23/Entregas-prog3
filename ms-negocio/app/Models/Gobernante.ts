@@ -1,24 +1,23 @@
 import { DateTime } from 'luxon'
-import {BelongsTo, belongsTo, column} from '@ioc:Adonis/Lucid/Orm'
+import {BaseModel, BelongsTo, belongsTo, column} from '@ioc:Adonis/Lucid/Orm'
 import Municipio from './Municipio'
-import Usuario from './Usuario'
 import Departamento from './Departamento'
 
-export default class Gobernante extends Usuario {
+export default class Gobernante extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
   @column()
-  public periodoInit: string
+  public periodo_init: string
 
   @column()
-  public periodoEnd: string
+  public periodo_end: string
 
   @column()
-  public idMunicipio: number
+  public id_municipio: number
 
   @column()
-  public idDepartamento: number
+  public id_departamento: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -27,12 +26,12 @@ export default class Gobernante extends Usuario {
   public updatedAt: DateTime
 
   @belongsTo(() => Departamento, {
-    foreignKey: 'idDepartamento',
+    foreignKey: 'id_departamento',
   })
   public departamento: BelongsTo<typeof Departamento>
 
   @belongsTo(() => Municipio, {
-    foreignKey: 'idMunicipio',
+    foreignKey: 'id_municipio',
   })
   public municipio: BelongsTo<typeof Municipio>
 
