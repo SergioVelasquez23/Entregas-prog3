@@ -10,7 +10,7 @@ export default class Cuota extends BaseModel {
   public id: number
 
   @column()
-  public idServicio: number
+  public id_servicio: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
