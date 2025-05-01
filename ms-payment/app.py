@@ -150,4 +150,8 @@ def send_email(email, bill, charge_details):
         print(f"Error al enviar el correo: {e}")
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     app.run(debug=True, port=3001)
+=======
+    app.run(debug=True)
+>>>>>>> 7539102ba38228461bc4673c5023facac739485c

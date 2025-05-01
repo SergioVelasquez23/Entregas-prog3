@@ -1,5 +1,6 @@
 package com.prog3.security.Controllers;
 
+<<<<<<< HEAD
 import com.prog3.security.DTO.PermissionRequest;
 import com.prog3.security.Services.JwUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,13 +8,25 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.web.bind.annotation.*;
+=======
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+>>>>>>> 7539102ba38228461bc4673c5023facac739485c
 
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
 
     @Autowired
+<<<<<<< HEAD
     private JwUtil jwtUtil;
+=======
+    private JwtUtil jwtUtil;
+>>>>>>> 7539102ba38228461bc4673c5023facac739485c
 
     @GetMapping("/success")
     public String loginSuccess(@AuthenticationPrincipal OidcUser user) {
