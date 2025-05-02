@@ -1,6 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import MaquinaCombo from 'App/Models/MaquinaCombo';
-import MaquinasComboValidator from 'App/Validators/MaquinasComboValidator';
+import MaquinaComboValidator from 'App/Validators/MaquinaComboValidator';
 
 export default class MaquinasCombosController {
     public async find({ request, params }: HttpContextContract) {
@@ -22,14 +22,14 @@ export default class MaquinasCombosController {
     }
 
     public async create({ request }: HttpContextContract) {
-        const payload = await request.validate(MaquinasComboValidator);
+        const payload = await request.validate(MaquinaComboValidator);
         const theMaquinasCombo: MaquinaCombo = await MaquinaCombo.create(payload);
         return theMaquinasCombo;
     }
 
     public async update({ params, request }: HttpContextContract) {
         const theMaquinasCombo: MaquinaCombo = await MaquinaCombo.findOrFail(params.id);
-        const payload = await request.validate(MaquinasComboValidator);
+        const payload = await request.validate(MaquinaComboValidator);
         theMaquinasCombo.maquina_id = payload.maquina_id;
         theMaquinasCombo.combo_id = payload.combo_id;
         return await theMaquinasCombo.save();

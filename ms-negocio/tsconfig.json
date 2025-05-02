@@ -1,19 +1,21 @@
 {
   "extends": "adonis-preset-ts/tsconfig.json",
   "include": [
-    "./**/*"
+    "**/*"
   ],
   "exclude": [
     "node_modules",
     "build"
   ],
   "compilerOptions": {
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "strict": true,
+    "outDir": "build",
+    "rootDir": "./",
     "baseUrl": "./",
+    "sourceMap": true,
     "paths": {
-      "App/*": ["app/*"],
+      "App/*": [
+        "./app/*"
+      ],
       "Config/*": [
         "./config/*"
       ],

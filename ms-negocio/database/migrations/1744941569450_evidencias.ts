@@ -8,10 +8,12 @@ export default class extends BaseSchema {
       table.increments('id')
       table.string('tipo_de_archivo').notNullable()
       table.string('contenido_archivo').notNullable()
-      table.dateTime('fecha_de_carga').notNullable()
+      table.date('fecha_de_carga').notNullable()
       table.integer('id_servicio').notNullable().unsigned().references('id').inTable('servicios').onDelete('CASCADE')
-      table.timestamp('created_at', { useTz: true }).defaultTo(this.now());
-      table.timestamp('updated_at', { useTz: true }).defaultTo(this.now());
+      table.integer('novedad_id').notNullable().unsigned().references('id').inTable('novedades').onDelete('CASCADE')
+      
+      table.timestamp('created_at', { useTz: true })
+      table.timestamp('updated_at', { useTz: true })
     })
   }
 

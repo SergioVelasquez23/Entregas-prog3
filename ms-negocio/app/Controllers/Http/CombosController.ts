@@ -2,7 +2,6 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Combo from 'App/Models/Combo';
 import ComboValidator from 'App/Validators/ComboValidator';
 
-
 export default class CombosController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
@@ -31,7 +30,7 @@ export default class CombosController {
     public async update({ params, request }: HttpContextContract) {
         const theCombo: Combo = await Combo.findOrFail(params.id);
         const payload = await request.validate(ComboValidator);
-        theCombo.id_servicio = payload.id_servicio;
+        theCombo.servicio_id = payload.servicio_id;
         return await theCombo.save();
     }
 

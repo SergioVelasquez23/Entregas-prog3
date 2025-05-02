@@ -2,7 +2,6 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Procedimiento from 'App/Models/Procedimiento';
 import ProcedimientoValidator from 'App/Validators/ProcedimientoValidator';
 
-
 export default class ProcedimientosController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {

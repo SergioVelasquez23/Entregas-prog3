@@ -1,54 +1,49 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Departamento from 'App/Models/Departamento'
+import axios from 'axios'
+import Env from '@ioc:Adonis/Core/Env'
 
 export default class DepartamentosController {
-  // Datos estáticos de departamentos y municipios
-  private static colombiaData = [
-    {
-      departamento: 'Antioquia',
-      ciudades: ['Medellín', 'Envigado', 'Itagüí', 'Bello'],
-    },
-    {
-      departamento: 'Cundinamarca',
-      ciudades: ['Bogotá', 'Soacha', 'Chía', 'Zipaquirá'],
-    },
-    {
-      departamento: 'Valle del Cauca',
-      ciudades: ['Cali', 'Palmira', 'Buenaventura', 'Tuluá'],
-    },
-    // Agrega más departamentos y ciudades según sea necesario
-  ];
-
-  public async departamentos({ response }: HttpContextContract) {
+  public async index({ response }: HttpContextContract) {
     try {
-      // Devuelve todos los departamentos
-      return response.json(DepartamentosController.colombiaData);
+      const apiUrl = Env.get('COLOMBIA_API_URL')
+
+      // Obtener departamentos desde la API
+      const { data: departamentos } = await axios.get(`${apiUrl}/departamentos`)
+
+      if (!departamentos || departamentos.length === 0) {
+        return response.notFound({ message: 'No se encontraron departamentos en la API.' })
+      }
+
+      return response.ok({ data: departamentos })
     } catch (error) {
-      console.error('Error fetching departamentos:', error);
-      return response.status(500).json({ error: 'Error al obtener departamentos' });
+      console.error('Error al obtener departamentos:', error.message)
+      return response.internalServerError({
+        message: 'Error al obtener departamentos desde la API de Colombia.',
+        error: error.message,
+      })
     }
   }
 
-  public async municipios({ params, response }: HttpContextContract) {
+  public async sincronizar({ response }: HttpContextContract) {
     try {
-      const departamentoNombre = params.departamento;
-      if (!departamentoNombre) {
-        return response.status(400).json({ error: 'Nombre de departamento requerido' });
+      const apiUrl = Env.get('COLOMBIA_API_URL')
+      const { data: departamentos } = await axios.get(`${apiUrl}/departamentos`)
+
+      for (const departamento of departamentos) {
+        await Departamento.updateOrCreate(
+          { id: departamento.id },
+          { nombre: departamento.nombre }
+        )
       }
 
-      // Busca el departamento por nombre
-      const departamento = DepartamentosController.colombiaData.find(
-        (dep) => dep.departamento.toLowerCase() === departamentoNombre.toLowerCase()
-      );
-
-      if (departamento) {
-        // Devuelve las ciudades del departamento encontrado
-        return response.json(departamento.ciudades);
-      } return response.status(500).json({ error: 'Error al obtener municipios' }); console.error('Error fetching municipios:', error);
+      return response.ok({ message: 'Departamentos sincronizados correctamente.' })
     } catch (error) {
-      return response.status(404).json({ message: 'Departamento no encontrado' }); return response.status(404).json({ message: 'Departamento no encontrado' });
-    } catch (error) {
-      console.error('Error fetching municipios:', error);
-      return response.status(500).json({ error: 'Error al obtener municipios' });
+      console.error('Error al sincronizar departamentos:', error.message)
+      return response.internalServerError({
+        message: 'Error al sincronizar departamentos desde la API de Colombia.',
+        error: error.message,
+      })
     }
   }
 }

@@ -3,8 +3,6 @@ import { BaseModel, column, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm
 import Operario from 'App/Models/Operario'
 
 export default class Especialidad extends BaseModel {
-  public static table = 'especialidades' // Asegúrate de que el nombre sea correcto
-
   @column({ isPrimary: true })
   public id: number
 

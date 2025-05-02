@@ -1,33 +1,24 @@
-import { schema, rules } from '@ioc:Adonis/Core/Validator';
+import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class CuotaValidator {
-  public static schema = schema.create({
-    id_servicio: schema.number([
-      rules.required(),
-      rules.exists({ table: 'servicios', column: 'id' }) // Verifica que exista en la tabla 'servicios'
-    ]),
-    email: schema.string({}, [
-      rules.required(),
-      rules.email()
-    ]),
-    monto: schema.number([
-      rules.required(),
-      rules.unsigned() // Asegura que sea un número positivo
-    ]),
-    fecha_vencimiento: schema.date({}, [
-      rules.required(),
-      rules.after('today') // Asegura que sea una fecha futura
-    ])
-  });
+  constructor(protected ctx: HttpContextContract) {}
 
-  public static messages = {
-    'id_servicio.required': 'El campo id_servicio es obligatorio.',
-    'id_servicio.exists': 'El id_servicio no existe en la base de datos.',
-    'email.required': 'El campo email es obligatorio.',
-    'email.email': 'El email debe tener un formato válido.',
-    'monto.required': 'El campo monto es obligatorio.',
-    'monto.unsigned': 'El monto debe ser un número positivo.',
-    'fecha_vencimiento.required': 'El campo fecha_vencimiento es obligatorio.',
-    'fecha_vencimiento.after': 'La fecha de vencimiento debe ser posterior a hoy.',
-  };
+  public schema = schema.create({
+    id_servicio: schema.number([
+      rules.exists({ table: 'servicios', column: 'id' })
+    ]),
+    valor: schema.number([
+      rules.unsigned()
+    ])
+  })
+
+  public messages: CustomMessages = {
+    'id_servicio.required': 'El ID del servicio es obligatorio.',
+    'id_servicio.exists': 'El servicio especificado no existe.',
+    'id_servicio.number': 'El ID del servicio debe ser un número.',
+    'valor.required': 'El valor de la cuota es obligatorio.',
+    'valor.number': 'El valor debe ser un número.',
+    'valor.unsigned': 'El valor no puede ser negativo.'
+  }
 }

@@ -4,34 +4,14 @@ import Factura from './Factura'
 import Servicio from './Servicio'
 
 export default class Cuota extends BaseModel {
-
-  public static table = "cuotas"
   @column({ isPrimary: true })
   public id: number
 
   @column()
   public id_servicio: number
-<<<<<<< HEAD
 
   @column()
-  public monto: number;
-
-  @column()
-  public email: string;
-
-  @column()
-  public nombreCliente: string; // Nombre del cliente
-
-  @column()
-  public referenciaPago: string; // Referencia única para el pago
-
-  @column.date()
-  public fechaVencimiento: DateTime;
-
-  @column()
-  public pagada: boolean; // Indica si la cuota ha sido pagada
-=======
->>>>>>> 5479768d0ad9fb762dfe7d5dc4285a664de7e301
+  public valor: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -42,7 +22,7 @@ export default class Cuota extends BaseModel {
   @hasOne(() => Factura, {
     foreignKey: 'id_cuota',
   })
-  public factura: HasOne<typeof Factura>
+  public factura: HasOne<typeof Factura>  
 
   @belongsTo(() => Servicio, {
     foreignKey: 'id_servicio',

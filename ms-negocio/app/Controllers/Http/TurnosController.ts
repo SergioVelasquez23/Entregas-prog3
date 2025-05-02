@@ -1,7 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Turno from 'App/Models/Turno'
-import TurnoValidator from 'App/Validators/TurnoValidator';
-
+import TurnoValidator from 'App/Validators/TurnoValidator'
 import { DateTime } from 'luxon'
 
 export default class TurnosController {
@@ -27,8 +26,9 @@ export default class TurnosController {
         const payload = await request.validate(TurnoValidator)
         const theTurno: Turno = await Turno.create({
             fecha: payload.fecha,
-            operario_id: payload.operario_id,
-            maquina_id: payload.maquina_id
+            hora: DateTime.fromFormat(payload.hora, 'HH:mm:ss'),
+            operario_id: payload.operarioId,
+            maquina_id: payload.maquinaId
         })
         return theTurno
     }
@@ -37,8 +37,9 @@ export default class TurnosController {
         const theTurno: Turno = await Turno.findOrFail(params.id)
         const payload = await request.validate(TurnoValidator)
         theTurno.fecha = payload.fecha
-        theTurno.operario_id = payload.operario_id
-        theTurno.maquina_id = payload.maquina_id
+        theTurno.hora = DateTime.fromFormat(payload.hora, 'HH:mm:ss')
+        theTurno.operario_id = payload.operarioId
+        theTurno.maquina_id = payload.maquinaId
         return await theTurno.save()
     }
 

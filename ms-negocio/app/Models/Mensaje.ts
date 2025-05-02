@@ -19,7 +19,7 @@ export default class Mensaje extends BaseModel {
   public chat_id: number
 
   @column()
-  public usuario_id: number
+  public user_id: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -31,5 +31,4 @@ export default class Mensaje extends BaseModel {
     foreignKey: 'chat_id',
   })
   public chat: BelongsTo<typeof Chat>
-
 }

@@ -9,8 +9,12 @@ export default class extends BaseSchema {
       table.string('latitud').notNullable()
       table.string('longitud').notNullable()
       table.integer('maquina_id').unsigned().references('id').inTable('maquinas').onDelete('CASCADE').notNullable()
-      table.timestamp('created_at', { useTz: true }).defaultTo(this.now());
-      table.timestamp('updated_at', { useTz: true }).defaultTo(this.now());
+
+      /**
+       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
+       */
+      table.timestamp('created_at', { useTz: true })
+      table.timestamp('updated_at', { useTz: true })
     })
   }
 

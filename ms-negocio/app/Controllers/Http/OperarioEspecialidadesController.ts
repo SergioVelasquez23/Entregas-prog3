@@ -1,7 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import OperarioEspecialidad from 'App/Models/OperarioEspecialidad'
-import OperarioEspecialidadesValidator from 'App/Validators/OperarioEspecialidadesValidator'
-
+import OperarioEspecialidadValidator from 'App/Validators/OperarioEspecialidadValidator'
 
 export default class OperarioEspecialidadesController {
   public async find({ request, params }: HttpContextContract) {
@@ -21,16 +20,17 @@ export default class OperarioEspecialidadesController {
   }
 
   public async create({ request }: HttpContextContract) {
-    const payload = await request.validate(OperarioEspecialidadesValidator)
+    const payload = await request.validate(OperarioEspecialidadValidator)
     const operarioEspecialidad = await OperarioEspecialidad.create(payload)
     return operarioEspecialidad
   }
 
   public async update({ params, request }: HttpContextContract) {
     const operarioEspecialidad = await OperarioEspecialidad.findOrFail(params.id)
-    const payload = await request.validate(OperarioEspecialidadesValidator)
+    const payload = await request.validate(OperarioEspecialidadValidator)
     operarioEspecialidad.operario_id = payload.operario_id
     operarioEspecialidad.especialidad_id = payload.especialidad_id
+    operarioEspecialidad.nivel_experiencia = payload.nivel_experiencia
     return await operarioEspecialidad.save()
   }
 

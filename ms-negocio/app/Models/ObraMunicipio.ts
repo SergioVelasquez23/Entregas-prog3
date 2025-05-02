@@ -2,7 +2,6 @@ import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 
 export default class ObraMunicipio extends BaseModel {
-  public static table = "obras_municipios"
   @column({ isPrimary: true })
   public id: number
 
