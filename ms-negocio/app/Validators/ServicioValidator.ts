@@ -26,7 +26,6 @@ export default class ServicioValidator {
   public schema = schema.create({
     costo: schema.number([
       rules.required(),
-      rules.minLength(0),
     ]),
     f_inicio: schema.date({}, [
       rules.required(),
@@ -51,10 +50,6 @@ export default class ServicioValidator {
       rules.minLength(10),
       rules.maxLength(500),
     ]),
-    idEvidencia: schema.number([
-      rules.required(),
-      rules.exists({ table: 'evidencias', column: 'id' }),
-    ]),
   })
 
   public messages = {
@@ -73,7 +68,5 @@ export default class ServicioValidator {
     'resumen.required': 'El resumen es obligatorio',
     'resumen.minLength': 'El resumen debe tener al menos 10 caracteres',
     'resumen.maxLength': 'El resumen no puede exceder los 500 caracteres',
-    'idEvidencia.required': 'El ID de la evidencia es obligatorio',
-    'idEvidencia.exists': 'La evidencia especificada no existe',
   }
 }

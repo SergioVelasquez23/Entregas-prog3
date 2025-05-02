@@ -6,40 +6,37 @@ import Combo from './Combo'
 
 export default class Servicio extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
+  public id: number;
 
   @column()
-  public costo: number
+  public costo: number;
+
+  @column.date()
+  public f_inicio: DateTime;
+
+  @column.date()
+  public f_fin: DateTime;
 
   @column()
-  public f_inicio: DateTime
+  public prioridad: string;
 
   @column()
-  public f_fin: DateTime
+  public tipo: string;
 
   @column()
-  public prioridad: string
+  public estado: string;
 
   @column()
-  public tipo: string
+  public ubicacion: string;
 
   @column()
-  public estado: string
-
-  @column()
-  public ubicacion: string
-
-  @column()
-  public resumen: string
-
-  @column()
-  public id_evidencia: number
+  public resumen: string;
 
   @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
+  public created_at: DateTime;
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
+  public updated_at: DateTime;
 
   @hasMany(() => Cuota, {
     foreignKey: 'id_servicio',

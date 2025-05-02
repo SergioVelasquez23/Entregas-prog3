@@ -10,12 +10,9 @@ export default class extends BaseSchema {
       table.date('fecha').notNullable()
       table.time('hora').notNullable()
       table.integer('chat_id').notNullable().unsigned().references('id').inTable('chats').onDelete('CASCADE'),
-        table.integer('usuario_id').notNullable()
-      /**
-       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
-       */
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.integer('usuario_id').notNullable()
+      table.timestamp('created_at', { useTz: true }).defaultTo(this.now());
+      table.timestamp('updated_at', { useTz: true }).defaultTo(this.now());
     })
   }
 

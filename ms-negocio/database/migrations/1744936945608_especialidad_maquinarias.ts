@@ -8,12 +8,8 @@ export default class extends BaseSchema {
       table.increments('id')
       table.integer('especialidad_id').unsigned().references('id').inTable('especialidades').onDelete('CASCADE')
       table.integer('maquina_id').unsigned().references('id').inTable('maquinas').onDelete('CASCADE')
-
-      /**
-       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
-       */
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.timestamp('created_at', { useTz: true }).defaultTo(this.now());
+      table.timestamp('updated_at', { useTz: true }).defaultTo(this.now());
     })
   }
 

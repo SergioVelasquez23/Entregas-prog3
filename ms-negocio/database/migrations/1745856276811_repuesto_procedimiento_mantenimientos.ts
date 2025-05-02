@@ -19,7 +19,8 @@ export default class RepuestoProcedimientoMantenimientos extends BaseSchema {
         .inTable('repuestos')
         .onDelete('CASCADE')
       table.unique(['procedimiento_id', 'repuesto_id'], 'repuesto_proc_mant_unique') // Nombre más corto
-      table.timestamps(true, true)
+      table.timestamp('created_at', { useTz: true }).defaultTo(this.now());
+      table.timestamp('updated_at', { useTz: true }).defaultTo(this.now());
     })
   }
 

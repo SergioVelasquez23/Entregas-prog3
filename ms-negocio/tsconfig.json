@@ -8,6 +8,13 @@
     "build"
   ],
   "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true, // Asegúrate de que esto esté habilitado
+    "moduleResolution": "node",
     "outDir": "build",
     "rootDir": "./",
     "baseUrl": "./",
@@ -24,7 +31,12 @@
       ],
       "Database/*": [
         "./database/*"
-      ]
+      ],
+      "App/*": ["./app/*"],
+      "Config/*": ["./config/*"],
+      "Contracts/*": ["./contracts/*"],
+      "Database/*": ["./database/*"],
+      "Colombia/*": ["./colombia/*"]
     },
     "types": [
       "@adonisjs/core",
