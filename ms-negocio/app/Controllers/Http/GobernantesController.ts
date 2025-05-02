@@ -1,6 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Gobernante from 'App/Models/Gobernante'
-import ColombiaApiService from 'App/Services/ColombiaApiService'
 import GobernanteDepartamento from 'App/Models/GobernanteDepartamento'
 import GobernanteMunicipio from 'App/Models/GobernanteMunicipio'
 import { DateTime } from 'luxon'
@@ -14,11 +13,6 @@ interface User {
 }
 
 export default class GobernantesController {
-    private colombiaApi: ColombiaApiService
-
-    constructor() {
-        this.colombiaApi = new ColombiaApiService()
-    }
     public async create({ request, response }: HttpContextContract) {
         const { user_id, periodoInit, periodoEnd } = request.only(['user_id', 'periodoInit', 'periodoEnd'])
 

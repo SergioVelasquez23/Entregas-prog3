@@ -5,6 +5,7 @@ export default class Cuotas extends BaseSchema {
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
+<<<<<<< HEAD
       table.increments('id') // ID de la cuota
       table.integer('id_servicio').unsigned().references('id').inTable('servicios').onDelete('CASCADE') // Relación con servicios
       table.string('email').notNullable() // Email del comprador
@@ -12,6 +13,12 @@ export default class Cuotas extends BaseSchema {
       table.date('fecha_vencimiento').notNullable() // Fecha de vencimiento
       table.boolean('pagada').defaultTo(false).notNullable() // Indica si la cuota ha sido pagada
       table.timestamps(true) // Timestamps
+=======
+      table.increments('id')
+      table.integer('id_servicio').notNullable().unsigned().references('id').inTable('servicios').onDelete('CASCADE')
+      table.timestamp('created_at', { useTz: true }).defaultTo(this.now());
+      table.timestamp('updated_at', { useTz: true }).defaultTo(this.now());
+>>>>>>> 5479768d0ad9fb762dfe7d5dc4285a664de7e301
     })
 
     this.schema.alterTable(this.tableName, (table) => {

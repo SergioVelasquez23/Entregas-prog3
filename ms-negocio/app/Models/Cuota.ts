@@ -11,6 +11,7 @@ export default class Cuota extends BaseModel {
 
   @column()
   public id_servicio: number
+<<<<<<< HEAD
 
   @column()
   public monto: number;
@@ -29,6 +30,8 @@ export default class Cuota extends BaseModel {
 
   @column()
   public pagada: boolean; // Indica si la cuota ha sido pagada
+=======
+>>>>>>> 5479768d0ad9fb762dfe7d5dc4285a664de7e301
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

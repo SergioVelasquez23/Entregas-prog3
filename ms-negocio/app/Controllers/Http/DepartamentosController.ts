@@ -1,41 +1,54 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import Departamento from 'App/Models/Departamento';
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 
 export default class DepartamentosController {
-    public async find({ request, params }: HttpContextContract) {
-        if (params.id) {
-            let theDepartamento: Departamento = await Departamento.findOrFail(params.id)
-            return theDepartamento;
-        } else {
-            const data = request.all()
-            if ("page" in data && "per_page" in data) {
-                const page = request.input('page', 1);
-                const perPage = request.input("per_page", 20);
-                return await Departamento.query().paginate(page, perPage)
-            } else {
-                return await Departamento.query()
-            }
+  // Datos estáticos de departamentos y municipios
+  private static colombiaData = [
+    {
+      departamento: 'Antioquia',
+      ciudades: ['Medellín', 'Envigado', 'Itagüí', 'Bello'],
+    },
+    {
+      departamento: 'Cundinamarca',
+      ciudades: ['Bogotá', 'Soacha', 'Chía', 'Zipaquirá'],
+    },
+    {
+      departamento: 'Valle del Cauca',
+      ciudades: ['Cali', 'Palmira', 'Buenaventura', 'Tuluá'],
+    },
+    // Agrega más departamentos y ciudades según sea necesario
+  ];
 
-        }
+  public async departamentos({ response }: HttpContextContract) {
+    try {
+      // Devuelve todos los departamentos
+      return response.json(DepartamentosController.colombiaData);
+    } catch (error) {
+      console.error('Error fetching departamentos:', error);
+      return response.status(500).json({ error: 'Error al obtener departamentos' });
+    }
+  }
 
-    }
-    public async create({ request }: HttpContextContract) {
-        const body = request.body();
-        const theDepartamento: Departamento = await Departamento.create(body);
-        return theDepartamento;
-    }
+  public async municipios({ params, response }: HttpContextContract) {
+    try {
+      const departamentoNombre = params.departamento;
+      if (!departamentoNombre) {
+        return response.status(400).json({ error: 'Nombre de departamento requerido' });
+      }
 
-    public async update({ params, request }: HttpContextContract) {
-        const theDepartamento: Departamento = await Departamento.findOrFail(params.id);
-        const body = request.body();
-        theDepartamento.nombre = body.nombre;
-        // Foreign key to Gobernante table
-        return await theDepartamento.save();
-    }
+      // Busca el departamento por nombre
+      const departamento = DepartamentosController.colombiaData.find(
+        (dep) => dep.departamento.toLowerCase() === departamentoNombre.toLowerCase()
+      );
 
-    public async delete({ params, response }: HttpContextContract) {
-        const theDepartamento: Departamento = await Departamento.findOrFail(params.id);
-            response.status(204);
-            return await theDepartamento.delete();
+      if (departamento) {
+        // Devuelve las ciudades del departamento encontrado
+        return response.json(departamento.ciudades);
+      } return response.status(500).json({ error: 'Error al obtener municipios' }); console.error('Error fetching municipios:', error);
+    } catch (error) {
+      return response.status(404).json({ message: 'Departamento no encontrado' }); return response.status(404).json({ message: 'Departamento no encontrado' });
+    } catch (error) {
+      console.error('Error fetching municipios:', error);
+      return response.status(500).json({ error: 'Error al obtener municipios' });
     }
+  }
 }

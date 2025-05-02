@@ -11,7 +11,8 @@ export default class extends BaseSchema {
       table.string('marca', 100).notNullable()
       table.text('descripcion').notNullable()
       table.decimal('precio', 10, 2).notNullable() // Asegura que el precio esté definido
-      table.timestamps() // created_at y updated_at
+      table.timestamp('created_at', { useTz: true }).defaultTo(this.now());
+      table.timestamp('updated_at', { useTz: true }).defaultTo(this.now());
     })
   }
 

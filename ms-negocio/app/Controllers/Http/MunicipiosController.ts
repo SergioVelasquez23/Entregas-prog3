@@ -2,6 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Municipio from 'App/Models/Municipio';
 import MunicipioValidator from 'App/Validators/MunicipioValidator';
 
+
 export default class MunicipiosController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {

@@ -24,10 +24,6 @@ export default class EvidenciaValidator {
    *    ```
    */
   public schema = schema.create({
-    id: schema.number([
-      rules.required(),
-      rules.exists({ table: 'evidencias', column: 'id' }),
-    ]),
     tipo_de_archivo: schema.string({}, [rules.required()]),
     contenido_archivo: schema.string({}, [rules.maxLength(255)]),
     fecha_de_carga: schema.date({}, [rules.required(),]),
