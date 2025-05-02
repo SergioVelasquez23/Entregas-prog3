@@ -1,6 +1,7 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import axios from "axios";
 import Env from "@ioc:Adonis/Core/Env";
+import Cuota from "App/Models/Cuota"; // Asegúrate de que el modelo Cuota esté correctamente importado
 
 export default class MsPaymentsMid {
   public async handle(
@@ -11,7 +12,7 @@ export default class MsPaymentsMid {
     console.log("Request recibido:", theRequest);
 
     // Verificar si existe el header de autorización
-    if (!theRequest.headers.authorization) {  
+    if (!theRequest.headers.authorization) {
       console.log("Falta el token de autorización");
       return response
         .status(401)
@@ -19,16 +20,39 @@ export default class MsPaymentsMid {
     }
 
     const token = theRequest.headers.authorization.replace("Bearer ", "");
+
+    // Obtener la cuota desde la base de datos
+    const cuotaId = request.input("cuotaId");
+    if (!cuotaId) {
+      return response
+        .status(400)
+        .json({ message: "Bad Request: Missing cuotaId" });
+    }
+
+    const cuota = await Cuota.find(cuotaId);
+    if (!cuota) {
+      return response
+        .status(404)
+        .json({ message: "Cuota not found" });
+    }
+
+    if (cuota.pagada) {
+      return response
+        .status(400)
+        .json({ message: "Cuota already paid" });
+    }
+
+    // Construir el payload del pago
     const paymentPayload = {
       userId: request.input("userId") || "default-user",
-      amount: request.input("amount") || 10000, // En COP, ajustar según datos
+      amount: cuota.monto, // Usar el monto de la cuota
       currency: "COP",
-      description: `Pago por ${theRequest.url}`,
+      description: `Pago de cuota con ID: ${cuota.id}`,
       customer: {
         email: request.input("email") || "user@example.com",
         name: request.input("name") || "Cliente",
       },
-      paymentMethod: request.input("paymentMethod") || "card", // Ajustar según ePayco
+      paymentMethod: request.input("paymentMethod") || "card",
     };
 
     try {
@@ -46,6 +70,10 @@ export default class MsPaymentsMid {
       console.log("Respuesta de ms-payments:", result.data);
 
       if (result.data.success) {
+        // Actualizar el estado de la cuota como pagada
+        cuota.pagada = true;
+        await cuota.save();
+
         // Continuar si el pago es exitoso
         response.header("X-Payment-Id", result.data.paymentId); // Opcional: añadir ID del pago
         await next();

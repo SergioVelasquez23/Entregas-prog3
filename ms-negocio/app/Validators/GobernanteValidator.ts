@@ -2,7 +2,7 @@ import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class GobernanteValidator {
-  constructor(protected ctx: HttpContextContract) {}
+  constructor(protected ctx: HttpContextContract) { }
 
   /*
    * Define schema to validate the "shape", "type", "formatting" and "integrity" of data.
@@ -25,19 +25,19 @@ export default class GobernanteValidator {
    */
   public schema = schema.create({
     // id: No se valida en creación porque es autogenerado por la base de datos
-    periodoInit: schema.date({}, [
+    periodo_init: schema.date({}, [
       rules.required(),
       rules.beforeField('periodoEnd'), // Debe ser anterior a periodoEnd
     ]),
-    periodoEnd: schema.date({}, [
+    periodo_end: schema.date({}, [
       rules.required(),
       rules.afterField('periodoInit'), // Debe ser posterior a periodoInit
     ]),
-    idMunicipio: schema.number([
+    id_municipio: schema.number([
       rules.required(),
       rules.exists({ table: 'municipios', column: 'id' }),
     ]),
-    idDepartamento: schema.number([
+    id_departamento: schema.number([
       rules.required(),
       rules.exists({ table: 'departamentos', column: 'id' }),
     ]),

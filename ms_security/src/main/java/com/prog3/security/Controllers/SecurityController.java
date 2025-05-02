@@ -168,7 +168,8 @@ public class SecurityController {
             System.out.println("Código almacenado: " + session.getValidationCode());
             System.out.println("Código proporcionado: " + twoFactorCode);
 
-            if (session.getValidationCode().equals(twoFactorCode)) {
+            // Validar que el código almacenado no sea null antes de comparar
+            if (session.getValidationCode() != null && session.getValidationCode().equals(twoFactorCode)) {
                 validSession = session;
                 break;
             }
@@ -236,11 +237,10 @@ public class SecurityController {
     // Endpoint: /permissions-validation
     @PostMapping("permissions-validation")
     public boolean permissionsValidation(final HttpServletRequest request,
-                            @RequestBody Permission thePermission) {
-        boolean success=this.theValidatorsService.validationRolePermission(request,thePermission.getUrl(),thePermission.getMethod());
+            @RequestBody Permission thePermission) {
+        boolean success = this.theValidatorsService.validationRolePermission(request, thePermission.getUrl(), thePermission.getMethod());
         return success;
     }
-
 
     // Endpoint: /{userId}/matchSession/{sessionId}
     @PutMapping("/{userId}/matchSession/{sessionId}")

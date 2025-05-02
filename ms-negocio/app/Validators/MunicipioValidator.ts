@@ -2,7 +2,7 @@ import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class MunicipioValidator {
-  constructor(protected ctx: HttpContextContract) {}
+  constructor(protected ctx: HttpContextContract) { }
 
   /*
    * Define schema to validate the "shape", "type", "formatting" and "integrity" of data.
@@ -29,7 +29,7 @@ export default class MunicipioValidator {
       rules.maxLength(50),
       rules.unique({ table: 'municipios', column: 'nombre' }),
     ]),
-    idDepartamento: schema.number([
+    id_departamento: schema.number([
       rules.required(),
       rules.exists({ table: 'departamentos', column: 'id' }),
     ]),

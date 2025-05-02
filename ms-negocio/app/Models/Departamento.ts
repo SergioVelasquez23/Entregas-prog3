@@ -15,9 +15,9 @@ export default class Departamento extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @hasOne (() => Gobernante, {
-    foreignKey: 'idDepartamento', 
-}
+  @hasOne(() => Gobernante, {
+    foreignKey: 'id_departamento',
+  }
   )
   public gobernante: HasOne<typeof Gobernante>
 }

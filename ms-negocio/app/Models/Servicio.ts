@@ -9,7 +9,7 @@ export default class Servicio extends BaseModel {
   public id: number
 
   @column()
-  public costo : number
+  public costo: number
 
   @column()
   public f_inicio: DateTime
@@ -42,17 +42,17 @@ export default class Servicio extends BaseModel {
   public updatedAt: DateTime
 
   @hasMany(() => Cuota, {
-    foreignKey: 'idServicio',
+    foreignKey: 'id_servicio',
   })
   public cuota: HasMany<typeof Cuota>
 
   @hasMany(() => Evidencia, {
-    foreignKey: 'idServicio',
+    foreignKey: 'id_servicio',
   })
   public evidencia: HasMany<typeof Evidencia>
 
   @hasOne(() => Combo, {
-    foreignKey: 'idServicio',
+    foreignKey: 'id_servicio',
   })
   public combo: HasOne<typeof Combo>
 }

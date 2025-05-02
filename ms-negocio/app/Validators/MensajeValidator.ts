@@ -2,7 +2,7 @@ import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class MensajeValidator {
-  constructor(protected ctx: HttpContextContract) {}
+  constructor(protected ctx: HttpContextContract) { }
 
   /*
    * Define schema to validate the "shape", "type", "formatting" and "integrity" of data.
@@ -43,7 +43,6 @@ export default class MensajeValidator {
     ]),
     usuario_id: schema.number([
       rules.required(),
-      rules.exists({ table: 'usuarios', column: 'id' }),
     ]),
   })
 

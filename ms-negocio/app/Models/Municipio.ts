@@ -11,7 +11,7 @@ export default class Municipio extends BaseModel {
   public nombre: string
 
   @column()
-  public idepartamento: number
+  public id_departamento: number
   // Foreign key to Departamento table
 
   @column.dateTime({ autoCreate: true })
@@ -20,16 +20,16 @@ export default class Municipio extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @hasMany (() => Gobernante, {
-    foreignKey: 'idMunicipio',
-    })
+  @hasMany(() => Gobernante, {
+    foreignKey: 'id_municipio',
+  })
   public gobernantes: HasMany<typeof Gobernante>
   // Foreign key to Gobernante table
-  
-  @manyToMany (() => Obra, {
-    pivotTable : 'obras_municipios',
+
+  @manyToMany(() => Obra, {
+    pivotTable: 'obras_municipios',
     pivotForeignKey: 'municipio_id',
     pivotRelatedForeignKey: 'obra_id',
-    })
+  })
   public obras: ManyToMany<typeof Obra>
 }

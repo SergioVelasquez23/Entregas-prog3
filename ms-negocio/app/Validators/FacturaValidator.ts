@@ -2,7 +2,7 @@ import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class FacturaValidator {
-  constructor(protected ctx: HttpContextContract) {}
+  constructor(protected ctx: HttpContextContract) { }
 
   /*
    * Define schema to validate the "shape", "type", "formatting" and "integrity" of data.
@@ -37,7 +37,7 @@ export default class FacturaValidator {
       rules.required(),
       rules.exists({ table: 'cuotas', column: 'id' }),
     ]),
-    
+
   })
 
   public messages = {
@@ -45,5 +45,9 @@ export default class FacturaValidator {
     'detalle.minLength': 'El detalle debe tener al menos 10 caracteres',
     'detalle.maxLength': 'El detalle no puede exceder los 500 caracteres',
 
+  }
+
+  public validate(payload: any) {
+    console.log('Validando id_cuota:', payload.id_cuota);
   }
 }

@@ -1,11 +1,11 @@
 import { DateTime } from 'luxon'
-import { BaseModel, BelongsTo, belongsTo, column} from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
 import Servicio from './Servicio'
 
 export default class Evidencia extends BaseModel {
   @column({ isPrimary: true })
   public id: number
-  
+
   @column()
   public tipo_de_archivo: string
 

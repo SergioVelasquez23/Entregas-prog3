@@ -1,41 +1,33 @@
-import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import { schema, rules } from '@ioc:Adonis/Core/Validator';
 
 export default class CuotaValidator {
-  constructor(protected ctx: HttpContextContract) {}
-
-  /*
-   * Define schema to validate the "shape", "type", "formatting" and "integrity" of data.
-   *
-   * For example:
-   * 1. The username must be of data type string. But then also, it should
-   *    not contain special characters or numbers.
-   *    ```
-   *     schema.string([ rules.alpha() ])
-   *    ```
-   *
-   * 2. The email must be of data type string, formatted as a valid
-   *    email. But also, not used by any other user.
-   *    ```
-   *     schema.string([
-   *       rules.email(),
-   *       rules.unique({ table: 'users', column: 'email' }), 
-   *     ])
-   *    ```
-   */
-  public schema = schema.create({
-    id: schema.number([
+  public static schema = schema.create({
+    id_servicio: schema.number([
       rules.required(),
-      rules.exists({ table: 'cuota', column: 'id' }),
+      rules.exists({ table: 'servicios', column: 'id' }) // Verifica que exista en la tabla 'servicios'
     ]),
-    idServicio: schema.number([
+    email: schema.string({}, [
       rules.required(),
-      rules.exists({ table: 'servicios', column: 'id' }),
+      rules.email()
     ]),
-  })
+    monto: schema.number([
+      rules.required(),
+      rules.unsigned() // Asegura que sea un número positivo
+    ]),
+    fecha_vencimiento: schema.date({}, [
+      rules.required(),
+      rules.after('today') // Asegura que sea una fecha futura
+    ])
+  });
 
-  public messages = {
-    'monto.min': 'El monto no puede ser negativo',
-    'fecha_vencimiento.after': 'La fecha de vencimiento debe ser futura',
-  }
+  public static messages = {
+    'id_servicio.required': 'El campo id_servicio es obligatorio.',
+    'id_servicio.exists': 'El id_servicio no existe en la base de datos.',
+    'email.required': 'El campo email es obligatorio.',
+    'email.email': 'El email debe tener un formato válido.',
+    'monto.required': 'El campo monto es obligatorio.',
+    'monto.unsigned': 'El monto debe ser un número positivo.',
+    'fecha_vencimiento.required': 'El campo fecha_vencimiento es obligatorio.',
+    'fecha_vencimiento.after': 'La fecha de vencimiento debe ser posterior a hoy.',
+  };
 }

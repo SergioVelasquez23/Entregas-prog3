@@ -2,7 +2,7 @@ import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class ServicioValidator {
-  constructor(protected ctx: HttpContextContract) {}
+  constructor(protected ctx: HttpContextContract) { }
 
   /*
    * Define schema to validate the "shape", "type", "formatting" and "integrity" of data.
@@ -10,18 +10,18 @@ export default class ServicioValidator {
    * For example:
    * 1. The username must be of data type string. But then also, it should
    *    not contain special characters or numbers.
-   *    ```
+   *    
    *     schema.string([ rules.alpha() ])
-   *    ```
+   *    
    *
    * 2. The email must be of data type string, formatted as a valid
    *    email. But also, not used by any other user.
-   *    ```
+   *    
    *     schema.string([
    *       rules.email(),
    *       rules.unique({ table: 'users', column: 'email' }),
    *     ])
-   *    ```
+   *    
    */
   public schema = schema.create({
     costo: schema.number([
@@ -35,10 +35,6 @@ export default class ServicioValidator {
     f_fin: schema.date({}, [
       rules.required(),
       rules.afterField('f_inicio'),
-    ]),
-    estado: schema.string({}, [
-      rules.required(),
-      rules.maxLength(100),
     ]),
     prioridad: schema.enum(['baja', 'media', 'alta'] as const, [
       rules.required(),
@@ -55,7 +51,7 @@ export default class ServicioValidator {
       rules.minLength(10),
       rules.maxLength(500),
     ]),
-    id_evidencia: schema.number([
+    idEvidencia: schema.number([
       rules.required(),
       rules.exists({ table: 'evidencias', column: 'id' }),
     ]),

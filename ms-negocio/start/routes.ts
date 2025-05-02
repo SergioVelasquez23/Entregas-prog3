@@ -53,4 +53,3 @@ import './routes/Operarios'
 import './routes/OperarioEspecialidades'
 import './routes/MaquinaCombos'
 import './routes/Middlewares'
-

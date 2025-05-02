@@ -2,7 +2,7 @@ import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class PolizaValidator {
-  constructor(protected ctx: HttpContextContract) {}
+  constructor(protected ctx: HttpContextContract) { }
 
   /*
    * Define schema to validate the "shape", "type", "formatting" and "integrity" of data.
@@ -34,11 +34,11 @@ export default class PolizaValidator {
       rules.required(),
       rules.exists({ table: 'seguros', column: 'id' }),
     ]),
-    fechaInicio: schema.date({}, [
+    fecha_inicio: schema.date({}, [
       rules.required(),
       rules.beforeField('fechaFin'), // Debe ser anterior a fechaFin
     ]),
-    fechaFin: schema.date({}, [
+    fecha_fin: schema.date({}, [
       rules.required(),
       rules.afterField('fechaInicio'), // Debe ser posterior a fechaInicio
     ]),
