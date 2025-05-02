@@ -1,46 +1,23 @@
-import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
+import { schema, rules, CustomMessages } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class ObraValidator {
   constructor(protected ctx: HttpContextContract) {}
 
-  /*
-   * Define schema to validate the "shape", "type", "formatting" and "integrity" of data.
-   *
-   * For example:
-   * 1. The username must be of data type string. But then also, it should
-   *    not contain special characters or numbers.
-   *    ```
-   *     schema.string([ rules.alpha() ])
-   *    ```
-   *
-   * 2. The email must be of data type string, formatted as a valid
-   *    email. But also, not used by any other user.
-   *    ```
-   *     schema.string([
-   *       rules.email(),
-   *       rules.unique({ table: 'users', column: 'email' }),
-   *     ])
-   *    ```
-   */
   public schema = schema.create({
-    // id: No se valida en creación porque es autogenerado
-    nombre: schema.string({}, [
-      rules.required(),
-      rules.maxLength(100),
-      rules.unique({ table: 'obras', column: 'nombre' }),
+    nombre: schema.string({ trim: true }, [
+      rules.maxLength(255)
     ]),
-    combo_id: schema.number([
-      rules.required(),
-      rules.exists({ table: 'combos', column: 'id' }),
-    ]),
+    comboId: schema.number([
+      rules.exists({ table: 'combos', column: 'id' })
+    ])
   })
 
-  public messages = {
-    'nombre.required': 'El nombre de la obra es obligatorio',
-    'nombre.maxLength': 'El nombre no puede exceder los 100 caracteres',
-    'nombre.unique': 'El nombre de la obra ya existe',
-    'combo_id.required': 'El ID del combo es obligatorio',
-    'combo_id.exists': 'El combo especificado no existe',
+  public messages: CustomMessages = {
+    'nombre.required': 'El nombre de la obra es obligatorio.',
+    'nombre.maxLength': 'El nombre no puede exceder los 255 caracteres.',
+    'comboId.required': 'El ID del combo es obligatorio.',
+    'comboId.exists': 'El combo especificado no existe.',
+    'comboId.number': 'El ID del combo debe ser un número.'
   }
 }

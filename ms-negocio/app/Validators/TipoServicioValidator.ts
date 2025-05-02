@@ -1,51 +1,22 @@
-import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
+import { schema, rules, CustomMessages } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class TipoServicioValidator {
   constructor(protected ctx: HttpContextContract) {}
 
-  /*
-   * Define schema to validate the "shape", "type", "formatting" and "integrity" of data.
-   *
-   * For example:
-   * 1. The username must be of data type string. But then also, it should
-   *    not contain special characters or numbers.
-   *    ```
-   *     schema.string([ rules.alpha() ])
-   *    ```
-   *
-   * 2. The email must be of data type string, formatted as a valid
-   *    email. But also, not used by any other user.
-   *    ```
-   *     schema.string([
-   *       rules.email(),
-   *       rules.unique({ table: 'users', column: 'email' }),
-   *     ])
-   *    ```
-   */
   public schema = schema.create({
-    nombre: schema.string({}, [
-      rules.required(),
-      rules.maxLength(100),
-      rules.unique({ table: 'tipo_servicios', column: 'nombre' }),
+    nombre: schema.string({ trim: true }, [
+      rules.maxLength(255),
     ]),
-    descripcion: schema.string({}, [
-      rules.required(),
-      rules.minLength(10),
+    descripcion: schema.string({ trim: true }, [
       rules.maxLength(500),
-    ]),
-    hora: schema.string({}, [
-      rules.required(), // La hora es obligatoria// Usa la regla personalizada para validar el formato
     ]),
   })
 
-  public messages = {
-    'nombre.required': 'El nombre del procedimiento es obligatorio',
-    'hora.required': 'La hora es obligatoria',
-    'nombre.maxLength': 'El nombre no puede exceder los 100 caracteres',
-    'nombre.unique': 'El nombre del procedimiento ya existe',
-    'descripcion.required': 'La descripción es obligatoria',
-    'descripcion.minLength': 'La descripción debe tener al menos 10 caracteres',
-    'descripcion.maxLength': 'La descripción no puede exceder los 500 caracteres',
+  public messages: CustomMessages = {
+    'nombre.required': 'El nombre del tipo de servicio es obligatorio.',
+    'nombre.maxLength': 'El nombre no puede exceder los 255 caracteres.',
+    'descripcion.required': 'La descripción del tipo de servicio es obligatoria.',
+    'descripcion.maxLength': 'La descripción no puede exceder los 500 caracteres.',
   }
 }

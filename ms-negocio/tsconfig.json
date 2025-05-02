@@ -31,12 +31,7 @@
       ],
       "Database/*": [
         "./database/*"
-      ],
-      "App/*": ["./app/*"],
-      "Config/*": ["./config/*"],
-      "Contracts/*": ["./contracts/*"],
-      "Database/*": ["./database/*"],
-      "Colombia/*": ["./colombia/*"]
+      ]
     },
     "types": [
       "@adonisjs/core",

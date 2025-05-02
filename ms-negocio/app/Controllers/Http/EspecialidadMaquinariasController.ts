@@ -2,7 +2,6 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import EspecialidadMaquinaria from 'App/Models/EspecialidadMaquinaria'
 import EspecialidadMaquinariaValidator from 'App/Validators/EspecialidadMaquinariaValidator'
 
-
 export default class EspecialidadMaquinariasController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
@@ -30,6 +29,7 @@ export default class EspecialidadMaquinariasController {
         const payload = await request.validate(EspecialidadMaquinariaValidator)
         especialidadMaquinaria.especialidad_id = payload.especialidad_id
         especialidadMaquinaria.maquina_id = payload.maquina_id
+        especialidadMaquinaria.tipo_trabajo = payload.tipo_trabajo
         return await especialidadMaquinaria.save()
     }
 

@@ -3,6 +3,8 @@ import BaseSchema from '@ioc:Adonis/Lucid/Schema';
 export default class Servicios extends BaseSchema {
     protected tableName = 'servicios';
 
+
+
     public async up() {
         this.schema.createTable(this.tableName, (table) => {
             table.increments('id').primary();
@@ -22,4 +24,5 @@ export default class Servicios extends BaseSchema {
     public async down() {
         this.schema.dropTable(this.tableName);
     }
+
 }

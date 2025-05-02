@@ -7,7 +7,7 @@ export default class Combo extends BaseModel {
   public id: number
 
   @column()
-  public id_servicio: number
+  public servicio_id: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

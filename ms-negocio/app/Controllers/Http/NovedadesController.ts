@@ -1,7 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Novedad from 'App/Models/Novedad';
-import NovedadesValidator from 'App/Validators/NovedadesValidator';
-
+import NovedadValidator from 'App/Validators/NovedadValidator';
 
 export default class NovedadesController {
     public async find({ request, params }: HttpContextContract) {
@@ -23,25 +22,25 @@ export default class NovedadesController {
     }
 
     public async create({ request }: HttpContextContract) {
-        const payload = await request.validate(NovedadesValidator);
+        const payload = await request.validate(NovedadValidator);
         const theNovedad: Novedad = await Novedad.create({
             tipo: payload.tipo,
             descripcion: payload.descripcion,
             evidencia: payload.evidencia,
             gravedad: payload.gravedad,
-            turno_id: payload.turno_id
+            turno_id: payload.turnoId
         });
         return theNovedad;
     }
 
     public async update({ params, request }: HttpContextContract) {
         const theNovedad: Novedad = await Novedad.findOrFail(params.id);
-        const payload = await request.validate(NovedadesValidator);
+        const payload = await request.validate(NovedadValidator);
         theNovedad.tipo = payload.tipo;
         theNovedad.descripcion = payload.descripcion;
         theNovedad.evidencia = payload.evidencia;
         theNovedad.gravedad = payload.gravedad;
-        theNovedad.turno_id = payload.turno_id;
+        theNovedad.turno_id = payload.turnoId;
         return await theNovedad.save();
     }
 

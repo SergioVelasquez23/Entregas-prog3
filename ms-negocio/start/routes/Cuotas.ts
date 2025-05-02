@@ -4,6 +4,6 @@ Route.group(() => {
     Route.get("/cuotas/:id", "CuotasController.find");
     Route.post("/cuotas", "CuotasController.create");
     Route.put("/cuotas/:id", "CuotasController.update");
-    Route.get('/cuotas/:id/payment-details', 'CuotasController.getCuotaForPayment');
-    Route.post('/cuotas/:id/pay', 'CuotasController.payCuota').middleware('MsPayMid');
-})
+    Route.delete("/cuotas/:id", "CuotasController.delete");
+    Route.post("/cuotas/:id/pay", "CuotasController.pay");
+});

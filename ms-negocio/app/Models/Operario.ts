@@ -1,22 +1,18 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasMany, manyToMany, ManyToMany, HasMany } from '@ioc:Adonis/Lucid/Orm' 
+import { BaseModel, column, manyToMany, ManyToMany} from '@ioc:Adonis/Lucid/Orm' 
 import Especialidad from 'App/Models/Especialidad'
 import Maquina from 'App/Models/Maquina'
 import Seguro from './Seguro'
-
 
 export default class Operario extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
   @column()
+  public user_id: string
+
+  @column()
   public experiencia: string
-
-  @column()
-  public email: string
-
-  @column()
-  public password: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -44,5 +40,4 @@ export default class Operario extends BaseModel {
     pivotRelatedForeignKey: 'seguro_id',
   })
   public seguros: ManyToMany<typeof Seguro>
-
 }

@@ -23,6 +23,7 @@ export default class EspecialidadesValidator {
    *     ])
    *    ```
    */
+
   public schema = schema.create({
     nombre: schema.string({}, [
 

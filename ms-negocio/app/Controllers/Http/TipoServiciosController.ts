@@ -2,7 +2,6 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import TipoServicio from 'App/Models/TipoServicio';
 import TipoServicioValidator from 'App/Validators/TipoServicioValidator';
 
-
 export default class TipoServiciosController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {

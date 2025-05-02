@@ -16,13 +16,12 @@ export default class ServiciosController {
             } else {
                 return await Servicio.query()
             }
-
         }
-
     }
+
     public async create({ request }: HttpContextContract) {
-        const body = request.body();
-        const theServicio: Servicio = await Servicio.create(body);
+        const payload = await request.validate(ServicioValidator);
+        const theServicio: Servicio = await Servicio.create(payload);
         return theServicio;
     }
 

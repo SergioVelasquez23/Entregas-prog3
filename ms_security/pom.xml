@@ -68,8 +68,6 @@
             <artifactId>jjwt-jackson</artifactId>
             <version>0.11.5</version>
         </dependency>
-<<<<<<< HEAD
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -85,8 +83,6 @@
             <version>0.9.1</version>
         </dependency>
 
-=======
->>>>>>> 7539102ba38228461bc4673c5023facac739485c
     </dependencies>
     <build>
         <plugins>

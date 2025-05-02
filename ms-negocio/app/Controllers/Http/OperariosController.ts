@@ -31,9 +31,8 @@ export default class OperariosController {
 
     // Crear el operario en ms-negocio
     const operario = await Operario.create({
-      email,
+      user_id: user._id,
       experiencia,
-      password,
     })
 
     return response.status(201).send({

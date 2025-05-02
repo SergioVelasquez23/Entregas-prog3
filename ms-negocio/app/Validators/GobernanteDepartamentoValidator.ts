@@ -41,6 +41,6 @@ export default class GobernanteDepartamentoValidator {
     'fecha_inicio.date': 'La fecha de inicio debe ser una fecha válida.',
     'fecha_fin.required': 'La fecha de fin es obligatoria.',
     'fecha_fin.date': 'La fecha de fin debe ser una fecha válida.',
-    'fecha_fin.afterOrEqual': 'La fecha de fin no puede ser en el pasado.'
-  }
+    'fecha_fin.afterOrEqual': 'La fecha de fin no puede ser en el pasado.'
+  }
 }

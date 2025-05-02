@@ -1,6 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import ObraMunicipio from 'App/Models/ObraMunicipio';
-import ObraMunicipioValidator from 'App/Validators/ObrasMunicipioValidator';
+import ObraMunicipioValidator from 'App/Validators/ObraMunicipioValidator';
 
 export default class ObrasMunicipiosController {
     public async find({ request, params }: HttpContextContract) {

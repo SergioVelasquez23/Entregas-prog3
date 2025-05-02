@@ -10,8 +10,12 @@ export default class Gobernantes extends BaseSchema {
       table.string('periodo_init').notNullable()
       table.string('periodo_end').notNullable()
       table.integer('id_municipio').unsigned().references('id').inTable('municipios').onDelete('CASCADE')
-      table.timestamp('created_at', { useTz: true }).defaultTo(this.now());
-      table.timestamp('updated_at', { useTz: true }).defaultTo(this.now());
+      table.timestamp('created_at', { useTz: true })
+      table.timestamp('updated_at', { useTz: true })
+
+      table.integer('id_departamento').unsigned().references('id').inTable('departamentos').onDelete('CASCADE')
+
+
     })
   }
 

@@ -2,7 +2,6 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Evidencia from 'App/Models/Evidencia';
 import EvidenciaValidator from 'App/Validators/EvidenciaValidator';
 
-
 export default class EvidenciasController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
@@ -35,6 +34,7 @@ export default class EvidenciasController {
         theEvidencia.contenido_archivo = payload.contenido_archivo;
         theEvidencia.fecha_de_carga = payload.fecha_de_carga;
         theEvidencia.id_servicio = payload.id_servicio;
+        theEvidencia.novedad_id = payload.novedad_id;
         return await theEvidencia.save();
     }
 

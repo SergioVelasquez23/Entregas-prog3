@@ -1,9 +1,9 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class Cuotas extends BaseSchema {
+export default class extends BaseSchema {
   protected tableName = 'cuotas'
 
-  public async up() {
+  public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id') // ID de la cuota
       table.integer('id_servicio').unsigned().references('id').inTable('servicios').onDelete('CASCADE') // Relación con servicios
@@ -13,19 +13,11 @@ export default class Cuotas extends BaseSchema {
       table.boolean('pagada').defaultTo(false).notNullable() // Indica si la cuota ha sido pagada
       table.timestamps(true) // Timestamps
     })
-
-    this.schema.alterTable(this.tableName, (table) => {
-      table.string('nombre_cliente').notNullable(); // Nombre del cliente
-      table.string('referencia_pago').unique().notNullable(); // Referencia única para el pago
-    });
   }
-
-  public async down() {
-    this.schema.alterTable(this.tableName, (table) => {
-      table.dropColumn('nombre_cliente');
-      table.dropColumn('referencia_pago');
-    });
-
+  public async down () {
     this.schema.dropTable(this.tableName)
   }
-}
+ }
+
+
+

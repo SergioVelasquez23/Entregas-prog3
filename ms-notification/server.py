@@ -90,4 +90,4 @@ def send_2fa_route():
 
 # Iniciar el servidor Flask
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8081, debug=False)  # Puerto 8080
+    app.run(host='0.0.0.0', port=8081, debug=False)
