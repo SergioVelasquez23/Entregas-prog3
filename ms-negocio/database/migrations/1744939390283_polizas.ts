@@ -11,9 +11,8 @@ export default class extends BaseSchema {
       table.integer('seguro_id').unsigned().references('id').inTable('seguros').onDelete('CASCADE')
       table.dateTime('fecha_inicio').notNullable()
       table.dateTime('fecha_fin').notNullable()
-
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.timestamp('created_at', { useTz: true }).defaultTo(this.now());
+      table.timestamp('updated_at', { useTz: true }).defaultTo(this.now());
 
       // ✅ XOR CHECK
       table.check(`

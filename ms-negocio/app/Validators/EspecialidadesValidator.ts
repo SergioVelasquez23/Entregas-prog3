@@ -24,10 +24,6 @@ export default class EspecialidadesValidator {
    *    ```
    */
   public schema = schema.create({ 
-    id: schema.number([
-      rules.required(),
-      rules.exists({ table: 'especialidades', column: 'id' }),
-    ]),
     nombre: schema.string({}, [
       rules.required(),
       rules.maxLength(50),

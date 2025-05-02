@@ -11,12 +11,8 @@ export default class extends BaseSchema {
       table.date('evidencia').notNullable()
       table.string('gravedad').notNullable()
       table.integer('turno_id').unsigned().references('id').inTable('turnos').onDelete('CASCADE').notNullable()
-
-      /**
-       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
-       */
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.timestamp('created_at', { useTz: true }).defaultTo(this.now());
+      table.timestamp('updated_at', { useTz: true }).defaultTo(this.now());
     })
   }
 

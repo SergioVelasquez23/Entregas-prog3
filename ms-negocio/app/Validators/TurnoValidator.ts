@@ -29,7 +29,7 @@ export default class TurnoValidator {
     ]),
     hora: schema.date({}, [
       rules.required(),
-      rules.regex(/^[0-2][0-3]:[0-5][0-9]$/), // Formato HH:MM dentro de DateTime
+       // Formato HH:MM dentro de DateTime
     ]),
     operario_id: schema.number([
       rules.required(),

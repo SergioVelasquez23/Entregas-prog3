@@ -36,7 +36,6 @@ export default class ServiciosController {
         theServicio.tipo = payload.tipo;
         theServicio.estado = payload.estado;
         theServicio.ubicacion = payload.ubicacion;
-        theServicio.id_evidencia = payload.id_evidencia;
         theServicio.resumen = payload.resumen;
         return await theServicio.save();
     }

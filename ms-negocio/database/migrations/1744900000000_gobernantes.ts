@@ -13,16 +13,8 @@ export default class extends BaseSchema {
       table.string('periodo_end').notNullable(),
       table.integer('id_departamento').unsigned().references('id').inTable('departamentos').onDelete('CASCADE')
       table.integer('id_municipio').unsigned().references('id').inTable('municipios').onDelete('CASCADE')
-
-      /**
-       * Uses integer as PostgreSQL and BIGINT as MSSQL
-       */
-
-      /**
-       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
-       */
-      table.timestamp('created_at', { useTz: true })
-      table.timestamp('updated_at', { useTz: true })
+      table.timestamp('created_at', { useTz: true }).defaultTo(this.now());
+      table.timestamp('updated_at', { useTz: true }).defaultTo(this.now());
     })
   }
 
