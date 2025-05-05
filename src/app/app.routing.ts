@@ -20,7 +20,9 @@ const routes: Routes =[
         loadChildren: () => import('src/app/layouts/admin-layout/admin-layout.module').then(m => m.AdminLayoutModule)
       }
     ]
-  }, {
+  },
+  
+  {
     path: '',
     component: AuthLayoutComponent,
     children: [
