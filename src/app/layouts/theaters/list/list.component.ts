@@ -29,29 +29,4 @@ export class ListComponent implements OnInit {
     console.log("Edit theater with id: ", id);
 
   }
-  delete(id: number) {
-    console.log("Delete theater with id:", id);
-    Swal.fire({
-      title: 'Eliminar',
-      text: "Está seguro que quiere eliminar el registro?",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, eliminar',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.theaterService.delete(id).
-          subscribe(data => {
-            Swal.fire(
-              'Eliminado!',
-              'Registro eliminado correctamente.',
-              'success'
-            )
-            this.ngOnInit();
-          });
-      }
-    })
-   }
 }

@@ -12,6 +12,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
+import { ListComponent } from './layouts/chats/list/list.component';
+import { ManageComponent } from './layouts/chats/manage/manage.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { ComponentsModule } from './components/components.module';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    ListComponent,
+    ManageComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
