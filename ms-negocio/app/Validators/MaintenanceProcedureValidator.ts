@@ -5,13 +5,13 @@ export default class MaintenanceProcedureValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    procedimiento_id: schema.number([
-      rules.exists({ table: 'procedimientos', column: 'id' }),
+    procedure_id: schema.number([
+      rules.exists({ table: 'procedures', column: 'id' }),
     ]),
-    mantenimiento_id: schema.number([
-      rules.exists({ table: 'mantenimientos', column: 'id' }),
+    maintenance_id: schema.number([
+      rules.exists({ table: 'maintenances', column: 'id' }),
     ]),
-    estado: schema.string({ trim: true }, [
+    status: schema.string({ trim: true }, [
       rules.maxLength(255)
     ])
   })

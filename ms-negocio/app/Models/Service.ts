@@ -41,7 +41,7 @@ export default class Service extends BaseModel {
   @hasMany(() => Quota, {
     foreignKey: 'service_id',
   })
-  public Quota: HasMany<typeof Quota>
+  public quota: HasMany<typeof Quota>
 
   @hasMany(() => Evidence, {
     foreignKey: 'service_id',

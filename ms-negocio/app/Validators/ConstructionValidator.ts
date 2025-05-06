@@ -1,14 +1,14 @@
 import { schema, rules, CustomMessages } from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-export default class ObraValidator {
+export default class ConstructionValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    nombre: schema.string({ trim: true }, [
+    name: schema.string({ trim: true }, [
       rules.maxLength(255)
     ]),
-    comboId: schema.number([
+    combo_id: schema.number([
       rules.exists({ table: 'combos', column: 'id' })
     ])
   })

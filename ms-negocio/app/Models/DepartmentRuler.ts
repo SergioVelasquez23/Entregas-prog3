@@ -28,7 +28,7 @@ export default class DepartmentRuler extends BaseModel {
   @belongsTo(() => Departament, {
     foreignKey: 'departament_id',
   })
-  public departament: BelongsTo<typeof Departament>
+  public department: BelongsTo<typeof Departament>
 
   @belongsTo(() => Ruler, {
     foreignKey: 'ruler_id',

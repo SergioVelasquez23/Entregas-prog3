@@ -28,7 +28,7 @@ export default class Departament extends BaseModel {
   @hasMany(() => Municipality, {
     foreignKey: 'departament_id',
   })
-  public municipios: HasMany<typeof Municipality>
+  public municipalities: HasMany<typeof Municipality>
 
 
 }
