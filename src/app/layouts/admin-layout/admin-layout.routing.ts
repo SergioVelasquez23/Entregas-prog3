@@ -27,7 +27,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/bill/bill.module').then(m => m.BillModule)
+            loadChildren: () => import('src/app/layouts/bill/bill.module').then(m => m.BillRoutingModule)
           }
         ]
       },
@@ -36,7 +36,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/chats/chats.module').then(m => m.ChatsModule)
+            loadChildren: () => import('src/app/layouts/chats/chats.module').then(m => m.ChatsRoutingModule)
           }
         ]
       },
