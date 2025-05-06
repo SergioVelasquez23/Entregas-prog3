@@ -5,7 +5,7 @@ export default class ComboValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    servicio_id: schema.number([
+    service_id: schema.number([
       rules.exists({ table: 'servicios', column: 'id' })
     ])
   })

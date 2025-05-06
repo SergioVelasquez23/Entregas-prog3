@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Env from '@ioc:Adonis/Core/Env';
-import Cuota from 'App/Models/Cuota';
-import Factura from 'App/Models/Factura';
+import Cuota from 'App/Models/Quota';
+import Factura from 'App/Models/Bill';
 
 interface PaymentCard {
     number: string;

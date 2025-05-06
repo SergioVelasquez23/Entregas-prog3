@@ -1,8 +1,9 @@
 import Route from '@ioc:Adonis/Core/Route'
+
 Route.group(() => {
-    Route.get("/gobernantes_departamentos", "GobernantesDepartamentosController.find");
-    Route.get("/gobernantes_departamentos/:id", "GobernantesDepartamentosController.find");
-    Route.post("/gobernantes_departamentos", "GobernantesDepartamentosController.create");
-    Route.put("/gobernantes_departamentos/:id", "GobernantesDepartamentosController.update");
-    Route.delete("/gobernantes_departamentos/:id", "GobernantesDepartamentosController.delete");
+  Route.get("/departments_rulers", "DepartmentsRulersController.find");
+  Route.get("/departments_rulers/:id", "DepartmentsRulersController.find");
+  Route.post("/departments_rulers", "DepartmentsRulersController.create");
+  Route.put("/departments_rulers/:id", "DepartmentsRulersController.update");
+  Route.delete("/departments_rulers/:id", "DepartmentsRulersController.delete");
 });

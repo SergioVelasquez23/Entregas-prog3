@@ -1,9 +1,10 @@
 import Route from '@ioc:Adonis/Core/Route'
+
 Route.group(() => {
-    Route.get("/cuotas", "CuotasController.find");
-    Route.get("/cuotas/:id", "CuotasController.find");
-    Route.post("/cuotas", "CuotasController.create");
-    Route.put("/cuotas/:id", "CuotasController.update");
-    Route.delete("/cuotas/:id", "CuotasController.delete");
-    Route.post("/cuotas/:id/pay", "CuotasController.pay");
+  Route.get("/quotas", "QuotasController.find");
+  Route.get("/quotas/:id", "QuotasController.find");
+  Route.post("/quotas", "QuotasController.create");
+  Route.put("/quotas/:id", "QuotasController.update");
+  Route.delete("/quotas/:id", "QuotasController.delete");
+  Route.post("/quotas/:id/pay", "QuotasController.pay");
 });

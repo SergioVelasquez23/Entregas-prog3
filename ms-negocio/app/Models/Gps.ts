@@ -6,13 +6,13 @@ export default class Gps extends BaseModel {
   public id: number
 
   @column()
-  public latitud: string
+  public latitude: string
 
   @column()
-  public longitud: string
+  public length: string
 
   @column()
-  public maquina_id: number
+  public machinery_id: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

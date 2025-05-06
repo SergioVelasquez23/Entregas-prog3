@@ -5,10 +5,10 @@ export default class ChatValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    titulo: schema.string({ trim: true }, [
+    title: schema.string({ trim: true }, [
       rules.maxLength(255),
     ]),
-    tipo: schema.string({ trim: true }, [
+    type: schema.string({ trim: true }, [
       rules.maxLength(50),
     ]),
   })

@@ -30,7 +30,7 @@ export default class CombosController {
     public async update({ params, request }: HttpContextContract) {
         const theCombo: Combo = await Combo.findOrFail(params.id);
         const payload = await request.validate(ComboValidator);
-        theCombo.servicio_id = payload.servicio_id;
+        theCombo.service_id = payload.service_id;
         return await theCombo.save();
     }
 

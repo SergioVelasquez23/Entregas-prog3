@@ -1,7 +1,7 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import axios from "axios";
 import Env from "@ioc:Adonis/Core/Env";
-import Cuota from "App/Models/Cuota"; // Asegúrate de que el modelo Cuota esté correctamente importado
+import Cuota from "App/Models/Quota"; // Asegúrate de que el modelo Cuota esté correctamente importado
 
 export default class MsPaymentsMid {
   public async handle(

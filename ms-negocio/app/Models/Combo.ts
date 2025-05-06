@@ -1,13 +1,13 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
-import Obra from './Obra'
+import Obra from './Construction'
 
 export default class Combo extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
   @column()
-  public servicio_id: number
+  public service_id: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -18,5 +18,5 @@ export default class Combo extends BaseModel {
   @hasMany(() => Obra, {
     foreignKey: 'combo_id',
   })
-  public obras: HasMany <typeof Obra>
+  public constructions: HasMany <typeof Obra>
 }

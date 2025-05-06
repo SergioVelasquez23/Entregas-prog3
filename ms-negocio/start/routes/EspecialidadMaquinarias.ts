@@ -1,8 +1,9 @@
 import Route from '@ioc:Adonis/Core/Route'
+
 Route.group(() => {
-    Route.get("/especialidad_maquinarias", "EspecialidadMaquinariasController.find");
-    Route.get("/especialidad_maquinarias/:id", "EspecialidadMaquinariasController.find");
-    Route.post("/especialidad_maquinarias", "EspecialidadMaquinariasController.create");
-    Route.put("/especialidad_maquinarias/:id", "EspecialidadMaquinariasController.update");
-    Route.delete("/especialidad_maquinarias/:id", "EspecialidadMaquinariasController.delete");
+  Route.get("/specialty_machinery", "SpecialtyMachineryController.find");
+  Route.get("/specialty_machinery/:id", "SpecialtyMachineryController.find");
+  Route.post("/specialty_machinery", "SpecialtyMachineryController.create");
+  Route.put("/specialty_machinery/:id", "SpecialtyMachineryController.update");
+  Route.delete("/specialty_machinery/:id", "SpecialtyMachineryController.delete");
 });

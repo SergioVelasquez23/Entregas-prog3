@@ -6,7 +6,7 @@ export default class ChatsController {
     public async find({ params, response }: HttpContextContract) {
         const chat = await Chat.query()
           .where('id', params.id)
-          .preload('mensajes', (query) => {
+          .preload('messages', (query) => {
             query.orderBy('createdAt', 'asc') // Ordenar mensajes por fecha
           })
           .firstOrFail()
@@ -15,16 +15,16 @@ export default class ChatsController {
       }
 
     public async create({ request, response }: HttpContextContract) {
-        const { titulo, tipo } = request.only(['titulo', 'tipo'])
-        const chat = await Chat.create({ titulo, tipo })
+        const { title, type } = request.only(['title', 'type'])
+        const chat = await Chat.create({ title, type })
         return response.status(201).json(chat)
       }
 
     public async update({ params, request }: HttpContextContract) {
         const theChat: Chat = await Chat.findOrFail(params.id);
         const payload = await request.validate(ChatValidator);
-        theChat.titulo = payload.titulo;
-        theChat.tipo = payload.tipo;
+        theChat.title = payload.title;
+        theChat.type = payload.type;
         return await theChat.save();
     }
 

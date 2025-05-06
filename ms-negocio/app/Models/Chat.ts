@@ -1,16 +1,16 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
-import Mensaje from './Mensaje'
+import Mensaje from './Message'
 
 export default class Chat extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
   @column()
-  public titulo: string
+  public title: string
 
   @column()
-  public tipo: string
+  public type: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -21,6 +21,6 @@ export default class Chat extends BaseModel {
   @hasMany(() => Mensaje, {
     foreignKey: 'chat_id',
   })
-  public mensajes: HasMany<typeof Mensaje>
+  public messages: HasMany<typeof Mensaje>
 }
 
