@@ -6,8 +6,8 @@ export class Ruler {
     user_id?: string;
     start_period?: Date;
     end_period?: Date;
-    departments?: Department;
-    municipality?: Municipality;
+    departments?: Department[];
+    municipalities?: Municipality[];
     createdAt?: Date;
     updatedAt?: Date;
 }

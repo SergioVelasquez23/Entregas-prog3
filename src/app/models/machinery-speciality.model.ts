@@ -1,7 +1,9 @@
+import { TypeService } from "./type-service.model";
+
 export class MachinerySpeciality {
     id?: number;
-    speciality_id?: number;
-    machinery_id?: number;
+    type_service_id?: TypeService;
+    type_work?: string;
     createdAt?: Date;
     updatedAt?: Date;
 }

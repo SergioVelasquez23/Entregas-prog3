@@ -9,10 +9,11 @@ export class Service {
     end_date?: Date;
     priority?: string;
     type?: string;
+    status?: string;
     location?: string;
     summary?: string;
-    quota?: Quotas;
-    evidence?: Evidence;
+    quota?: Quotas[];
+    evidence?: Evidence[];
     combo?: Combo;
     createdAt?: Date;
     updatedAt?: Date;

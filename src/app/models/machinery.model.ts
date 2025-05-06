@@ -3,6 +3,7 @@ import { GPS } from "./gps.model";
 import { Insurance } from "./insurance.model";
 import { Maintenance } from "./maintenance.model";
 import { Operator } from "./operator.model";
+import { Speciality } from "./speciality.model";
 
 export class Machinery {
     id?: number;
@@ -12,9 +13,11 @@ export class Machinery {
     status?: string;
     location?: string;
     disponibility?: string;
+    assignment_date?: Date;
+    retirement_date?: Date;
     operators: Operator[];
+    specialities?: Speciality[];
     combos?: Combo[];
-    gps?: GPS;
     maintenances: Maintenance[];
     insurances: Insurance[];
     createdAt?: Date;

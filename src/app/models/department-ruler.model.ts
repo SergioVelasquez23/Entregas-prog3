@@ -5,8 +5,10 @@ export class DepartmentRuler {
     id?: number;
     start_date?: Date;
     end_date?: Date;
-    ruler_id: Ruler;
-    department_id: Department;
+    ruler_id?: Ruler;
+    department_id?: Department;
+    department?: Department;
+    ruler?: Ruler;
     createdAt?: Date;
     updatedAt?: Date;
 }

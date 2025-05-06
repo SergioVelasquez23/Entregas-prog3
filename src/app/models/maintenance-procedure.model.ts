@@ -6,7 +6,6 @@ export class MaintenanceProcedure {
     procedure_id?: number;
     maintenance_id?: number;
     status?: string;
-    spares?: Spare[];
     createdAt?: Date;
     updatedAt?: Date;
     
