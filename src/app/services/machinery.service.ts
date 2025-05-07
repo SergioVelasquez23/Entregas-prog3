@@ -2,14 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Machinery } from '../models/machinery.model';
+import { Machinery } from '../models/machinery.model'; // Importando el modelo Machinery
 
 @Injectable({
   providedIn: 'root'
 })
-export class Machinery{
+// ¡Modificado aquí! Cambiamos el nombre de la clase del servicio
+export class MachineryService { // <--- Nombre de la clase del servicio cambiado a MachineryService
 
   constructor(private http: HttpClient) { }
+
+  // Dentro de la clase MachineryService, puedes usar el modelo Machinery importado
+  // para tipar tus datos, como ya lo estás haciendo correctamente:
 
   list(): Observable<Machinery[]> {
     return this.http.get<Machinery[]>(`${environment.url_ms_cinema}/machinery`);

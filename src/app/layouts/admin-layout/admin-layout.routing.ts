@@ -45,7 +45,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/combomachinery/combomachinery.module').then(m => m.CombomachineryModule)
+            loadChildren: () => import('src/app/layouts/combomachinery/combomachinery.module').then(m => m.ComboMachineryRoutingModule)
           }
         ]
       },
@@ -54,7 +54,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/combos/combos.module').then(m => m.CombosModule)
+            loadChildren: () => import('src/app/layouts/combos/combos.module').then(m => m.CombosRoutingModule)
           }
         ]
       },
@@ -63,7 +63,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/construction/construction.module').then(m => m.ConstructionModule)
+            loadChildren: () => import('src/app/layouts/construction/construction.module').then(m => m.ConstructionRoutingModule)
           }
         ]
       },
@@ -72,7 +72,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/departmentruler/departmentruler.module').then(m => m.DepartmentrulerModule)
+            loadChildren: () => import('src/app/layouts/departmentruler/departmentruler.module').then(m => m.DepartmentRulerRoutingModule)
           }
         ]
       },
@@ -81,7 +81,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/evidence/evidence.module').then(m => m.EvidenceModule)
+            loadChildren: () => import('src/app/layouts/evidence/evidence.module').then(m => m.EvidenceRoutingModule)
           }
         ]
       },
@@ -90,7 +90,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/gps/gps.module').then(m => m.GpsModule)
+            loadChildren: () => import('src/app/layouts/gps/gps.module').then(m => m.GpsRoutingModule)
           }
         ]
       },
@@ -99,7 +99,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/insurance/insurance.module').then(m => m.InsuranceModule)
+            loadChildren: () => import('src/app/layouts/insurance/insurance.module').then(m => m.InsuranceRoutingModule)
           }
         ]
       },
@@ -108,7 +108,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/machinery/machinery.module').then(m => m.MachineryModule)
+            loadChildren: () => import('src/app/layouts/machinery/machinery.module').then(m => m.MachineryRoutingModule)
           }
         ]
       },
@@ -117,7 +117,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/machineryspeciality/machineryspeciality.module').then(m => m.MachineryspecialityModule)
+            loadChildren: () => import('src/app/layouts/machineryspeciality/machineryspeciality.module').then(m => m.MachinerySpecialtyRoutingModule)
           }
         ]
       },
@@ -126,7 +126,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/maintenance/maintenance.module').then(m => m.MaintenanceModule)
+            loadChildren: () => import('src/app/layouts/maintenance/maintenance.module').then(m => m.MaintenanceRoutingModule)
           }
         ]
       },
@@ -135,7 +135,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/maintenanceprocedure/maintenanceprocedure.module').then(m => m.MaintenanceprocedureModule)
+            loadChildren: () => import('src/app/layouts/maintenanceprocedure/maintenanceprocedure.module').then(m => m.MaintenanceProcedureRoutingModule)
           }
         ]
       },
@@ -144,7 +144,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/message/message.module').then(m => m.MessageModule)
+            loadChildren: () => import('src/app/layouts/message/message.module').then(m => m.MessageRoutingModule)
           }
         ]
       },
@@ -153,7 +153,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/municipalityconstruction/municipalityconstruction.module').then(m => m.MunicipalityconstructionModule)
+            loadChildren: () => import('src/app/layouts/municipalityconstruction/municipalityconstruction.module').then(m => m.MunicipalityConstructionRoutingModule)
           }
         ]
       },
@@ -162,7 +162,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/municipalityruler/municipalityruler.module').then(m => m.MunicipalityrulerModule)
+            loadChildren: () => import('src/app/layouts/municipalityruler/municipalityruler.module').then(m => m.MunicipalityRulerRoutingModule)
           }
         ]
       },
@@ -171,7 +171,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/novelty/novelty.module').then(m => m.NoveltyModule)
+            loadChildren: () => import('src/app/layouts/novelty/novelty.module').then(m => m.NoveltyRoutingModule)
           }
         ]
       },
@@ -180,7 +180,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/operator/operator.module').then(m => m.OperatorModule)
+            loadChildren: () => import('src/app/layouts/operator/operator.module').then(m => m.OperatorRoutingModule)
           }
         ]
       },
@@ -189,7 +189,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/policy/policy.module').then(m => m.PolicyModule)
+            loadChildren: () => import('src/app/layouts/policy/policy.module').then(m => m.PolicyRoutingModule)
           }
         ]
       },
@@ -198,7 +198,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/procedure/procedure.module').then(m => m.ProcedureModule)
+            loadChildren: () => import('src/app/layouts/procedure/procedure.module').then(m => m.ProcedureRoutingModule)
           }
         ]
       },
@@ -207,7 +207,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/quotas/quotas.module').then(m => m.QuotasModule)
+            loadChildren: () => import('src/app/layouts/quotas/quotas.module').then(m => m.QuotasRoutingModule)
           }
         ]
       },
@@ -216,7 +216,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/ruler/ruler.module').then(m => m.RulerModule)
+            loadChildren: () => import('src/app/layouts/ruler/ruler.module').then(m => m.RulerRoutingModule)
           }
         ]
       },
@@ -225,7 +225,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/service/service.module').then(m => m.ServiceModule)
+            loadChildren: () => import('src/app/layouts/service/service.module').then(m => m.ServiceRoutingModule)
           }
         ]
       },
@@ -234,7 +234,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/shift/shift.module').then(m => m.ShiftModule)
+            loadChildren: () => import('src/app/layouts/shift/shift.module').then(m => m.ShiftRoutingModule)
           }
         ]
       },
@@ -243,7 +243,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/spare/spare.module').then(m => m.SpareModule)
+            loadChildren: () => import('src/app/layouts/spare/spare.module').then(m => m.SpareRoutingModule)
           }
         ]
       },
@@ -252,7 +252,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/specialityoperator/specialityoperator.module').then(m => m.SpecialityoperatorModule)
+            loadChildren: () => import('src/app/layouts/specialityoperator/specialityoperator.module').then(m => m.SpecialityOperatorRoutingModule)
           }
         ]
       },
@@ -261,7 +261,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/specialities/specialities.module').then(m => m.SpecialitiesModule)
+            loadChildren: () => import('src/app/layouts/specialities/specialities.module').then(m => m.Speciality)
           }
         ]
       }
