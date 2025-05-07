@@ -7,7 +7,7 @@ import { Insurance } from '../models/insurance.model';
 @Injectable({
   providedIn: 'root'
 })
-export class insuranceervice {
+export class insuranceService {
 
   constructor(private http: HttpClient) { }
 

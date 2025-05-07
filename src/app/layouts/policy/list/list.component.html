@@ -1,1 +1,45 @@
-<p>list works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<div class="container-fluid mt--7">
+<div class="row">
+  <div class="col">
+    <div class="card shadow">
+      <div class="card-header bg-transparent">
+        <h3 class="mb-0">Pólizas</h3> </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">ID Maquinaria</th>
+                <th scope="col">ID Operario</th>
+                <th scope="col">ID Aseguradora</th>
+                <th scope="col">Fecha Inicio</th>
+                <th scope="col">Fecha Fin</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let policy of policies">
+                <td>{{ policy.id }}</td>
+                <td>{{ policy.policy_type }}</td>
+                <td>{{ policy.machinery_id }}</td>
+                <td>{{ policy.operator_id }}</td>
+                <td>{{ policy.insurance_id }}</td>
+                <td>{{ policy.start_date | date:'yyyy-MM-dd' }}</td> <td>{{ policy.end_date | date:'yyyy-MM-dd' }}</td>   <td>
+                  <button class="btn btn-sm btn-primary" (click)="edit(policy.id)">Editar</button>
+                  <button class="btn btn-sm btn-danger" (click)="delete(policy.id)">Eliminar</button>
+                </td>
+              </tr>
+              <tr *ngIf="policies.length === 0"> <td colspan="8" class="text-center">No hay pólizas disponibles.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

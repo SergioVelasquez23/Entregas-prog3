@@ -1,1 +1,39 @@
-<p>list works!</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<div class="container-fluid mt--7">
+<div class="row">
+  <div class="col">
+    <div class="card shadow">
+      <div class="card-header bg-transparent">
+        <h3 class="mb-0">Operarios</h3> </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">ID Usuario</th>
+                <th scope="col">Experiencia</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let operator of operators">
+                <td>{{ operator.id }}</td>
+                <td>{{ operator.user_id }}</td>
+                <td>{{ operator.experience }}</td>
+                <td>
+                  <button class="btn btn-sm btn-primary" (click)="edit(operator.id)">Editar</button>
+                  <button class="btn btn-sm btn-danger" (click)="delete(operator.id)">Eliminar</button>
+                </td>
+              </tr>
+              <tr *ngIf="operators.length === 0"> <td colspan="4" class="text-center">No hay operarios disponibles.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

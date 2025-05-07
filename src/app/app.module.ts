@@ -12,8 +12,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { ListComponent } from './layouts/chats/list/list.component';
+
+// Estas importaciones parecen estar bien ahora (para chats y manejo genérico)
+import { ListChatComponent } from './layouts/chats/list/list.component';
 import { ManageComponent } from './layouts/chats/manage/manage.component';
+
+// ELIMINA ESTA LÍNEA: Este componente de theaters ya está declarado en TheatersModule
+// import { ListComponent } from './layouts/theaters/list/list.component';
 
 
 @NgModule({
@@ -30,8 +35,12 @@ import { ManageComponent } from './layouts/chats/manage/manage.component';
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    ListComponent,
-    ManageComponent
+    // Deja ListChatComponent y ManageComponent si son componentes que declaras aquí
+    ListChatComponent,
+    ManageComponent,
+
+    // ELIMINA ESTA LÍNEA: Este componente de theaters ya está declarado en TheatersModule
+    // ListComponent // <-- ELIMINA ESTA DECLARACIÓN
   ],
   providers: [],
   bootstrap: [AppComponent]
