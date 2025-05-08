@@ -6,16 +6,19 @@ import ServiceValidator from 'App/Validators/ServiceValidator';
 export default class ServicesController {
     public async find({ request, params }: HttpContextContract) {
         if (params.id) {
+            // Lógica para encontrar un solo servicio por ID
             let theService: Service = await Service.findOrFail(params.id)
             return theService;
-        } else {
+        } else { // Maneja el listado (GET /services)
             const data = request.all()
             if ("page" in data && "per_page" in data) {
+                // Lógica para listar paginado
                 const page = request.input('page', 1);
                 const perPage = request.input("per_page", 20);
                 return await Service.query().paginate(page, perPage)
             } else {
-                return await Service.query()
+                // <--- ¡CORREGIDO DEFINITIVAMENTE! Lógica para listar SIN paginación.
+                return await Service.all() // <--- Usamos Service.all() directamente para traer todos
             }
         }
     }

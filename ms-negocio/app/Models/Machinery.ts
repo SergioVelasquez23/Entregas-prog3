@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasMany, manyToMany, ManyToMany, HasMany, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, hasMany, manyToMany, ManyToMany, HasMany} from '@ioc:Adonis/Lucid/Orm'
 import Operator from 'App/Models/Operator'
 import TypeService from './TypeService'
 import Combo from './Combo'

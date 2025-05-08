@@ -1,44 +1,37 @@
-import BaseSchema from '@ioc:Adonis/Lucid/Schema'
+import BaseSchema from '@ioc:Adonis/Lucid/Schema';
 
 export default class extends BaseSchema {
   // Main table name
-  // 'gps' is often used as the table name itself
-  protected tableName = 'gps'
+  protected tableName = 'gps';
 
   public async up() {
     // Create the 'gps' table
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id').primary() // Auto-incrementing primary key (number)
+      table.increments('id').primary(); // Auto-incrementing primary key (number)
 
-      // Latitude coordinate (using string type as in your model)
-      // Consider using a more specific type like DECIMAL or FLOAT if storing numeric values.
-      table.string('latitude', 50).notNullable() // latitude column
-
-      // Longitude coordinate (using 'length' as in your model, but likely intended as 'longitude')
-      // Consider renaming this column to 'longitude' and using DECIMAL/FLOAT.
-      table.string('length', 50).notNullable() // length column (likely longitude)
+      table.string('latitude', 50).notNullable(); // latitude column
+      table.string('length', 50).notNullable(); // length column (likely longitude)
 
       // Foreign key column referencing the 'machinery' table
-      // This column exists in the 'gps' table.
-      // Assuming the 'machinery' table exists and its PK is a number 'id'.
+      // ¡MODIFICACIÓN AQUÍ! Referenciamos la tabla en plural 'machineries'.
       table
         .integer('machinery_id') // The foreign key column name from your model
-        .unsigned() // Ensures the number is positive
+        .unsigned()
         .references('id') // References the 'id' column
-        .inTable('machinery') // In the 'machinery' table (Adjust name if needed, e.g., 'maquinas')
-        .onDelete('CASCADE') // If machinery is deleted, delete associated GPS entries (common policy)
-        .notNullable() // Based on your model definition
+        .inTable('machineries') // <--- Nombre de la tabla referenciada cambiado a plural
+        .onDelete('CASCADE') // If machinery is deleted, delete associated GPS entries
+        .notNullable(); // Based on your model definition
 
       // Automatic timestamp columns (created_at, updated_at)
-      table.timestamps(true)
+      table.timestamps(true);
 
       // Optional: Add an index on the foreign key for performance
-      // table.index(['machinery_id'])
-    })
+      // table.index(['machinery_id']);
+    });
   }
 
   public async down() {
     // Drop the 'gps' table
-    this.schema.dropTableIfExists(this.tableName)
+    this.schema.dropTableIfExists(this.tableName);
   }
 }

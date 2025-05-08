@@ -15,7 +15,7 @@ export default class ServicioValidator {
     ]),
     end_date: schema.date({}, [
       rules.required(),
-      rules.afterField('f_inicio')
+      rules.afterField('start_date')
     ]),
     priority: schema.string({ trim: true }, [
       rules.required(),

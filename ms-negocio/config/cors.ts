@@ -5,7 +5,7 @@
  * file.
  */
 
-import type { CorsConfig } from '@ioc:Adonis/Core/Cors'
+import type { CorsConfig } from '@ioc:Adonis/Addons/Cors'
 
 const corsConfig: CorsConfig = {
   /*
@@ -20,7 +20,7 @@ const corsConfig: CorsConfig = {
   | you can define a function to enable/disable it on per request basis as well.
   |
   */
-  enabled: false,
+  enabled: true, // <--- ¡MODIFICADO! Habilitamos CORS
 
   // You can also use a function that return true or false.
   // enabled: (request) => request.url().startsWith('/api')
@@ -35,16 +35,21 @@ const corsConfig: CorsConfig = {
   |
   | https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin
   |
-  | Boolean (true)    - Allow current request origin.
-  | Boolean (false)   - Disallow all.
-  | String            - Comma separated list of allowed origins.
-  | Array             - An array of allowed origins.
-  | String (*)        - A wildcard (*) to allow all request origins.
-  | Function          - Receives the current origin string and should return
-  |                     one of the above values.
+  | Boolean (true)    - Allow current request origin.
+  | Boolean (false)   - Disallow all.
+  | String            - Comma separated list of allowed origins.
+  | Array             - An array of allowed origins.
+  | String (*)        - A wildcard (*) to allow all request origins.
+  | Function          - Receives the current origin string and should return
+  |                     one of the above values.
   |
   */
-  origin: true,
+  origin: [ // <--- ¡MODIFICADO! Cambiamos a un arreglo
+    'http://localhost:4200', // <--- Añadimos el origen de tu frontend Angular
+    'http://127.0.0.1:4200', // <--- Opcional, a veces necesario si accedes por 127.0.0.1
+    // Aquí puedes añadir otras URLs si tu frontend se desplegará en otro lugar
+    // Por ejemplo: 'https://tudominiofrontend.com'
+  ],
 
   /*
   |--------------------------------------------------------------------------
@@ -56,7 +61,7 @@ const corsConfig: CorsConfig = {
   |
   | Following is the list of default methods. Feel free to add more.
   */
-  methods: ['GET', 'HEAD', 'POST', 'PUT', 'DELETE'],
+  methods: ['GET', 'HEAD', 'POST', 'PUT', 'DELETE'], // Estos ya están bien para CRUD
 
   /*
   |--------------------------------------------------------------------------
@@ -68,14 +73,14 @@ const corsConfig: CorsConfig = {
   |
   | https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Request-Headers
   |
-  | Boolean(true)     - Allow all headers mentioned in `Access-Control-Request-Headers`.
-  | Boolean(false)    - Disallow all headers.
-  | String            - Comma separated list of allowed headers.
-  | Array             - An array of allowed headers.
-  | Function          - Receives the current header and should return one of the above values.
+  | Boolean(true)     - Allow all headers mentioned in `Access-Control-Request-Headers`.
+  | Boolean(false)    - Disallow all headers.
+  | String            - Comma separated list of allowed headers.
+  | Array             - An array of allowed headers.
+  | Function          - Receives the current header and should return one of the above values.
   |
   */
-  headers: true,
+  headers: true, // Permitir los encabezados de la petición (generalmente seguro en desarrollo)
 
   /*
   |--------------------------------------------------------------------------
@@ -106,6 +111,7 @@ const corsConfig: CorsConfig = {
     'pragma',
   ],
 
+
   /*
   |--------------------------------------------------------------------------
   | Credentials
@@ -117,7 +123,7 @@ const corsConfig: CorsConfig = {
   | https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials
   |
   */
-  credentials: true,
+  credentials: true, // Generalmente necesario si envías cookies o encabezados de autorización
 
   /*
   |--------------------------------------------------------------------------
