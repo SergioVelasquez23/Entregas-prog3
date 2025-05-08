@@ -17,10 +17,18 @@ export class ListServiceComponent implements OnInit {
   constructor(private serviceService: ServiceService /*, private router: Router*/) { }
 
   ngOnInit(): void {
-    // Call the service to get the list
-    this.serviceService.list().subscribe(data => {
-      this.services = data; // Assign data to the array property
-    });
+    console.log('Componente ListServiceComponent inicializado'); // <-- Opcional: confirma que ngOnInit se ejecuta
+    this.serviceService.list().subscribe(
+      data => {
+        console.log('Datos recibidos del servicio (subscribe):', data); // <-- Añade este log
+        this.services = data; // Asigna los datos
+        console.log('Variable services del componente después de asignar:', this.services); // <-- Añade este log
+      },
+      error => {
+        console.error('Error en la suscripción del servicio:', error); // <-- Añade log de error por si acaso
+      }
+    );
+    console.log('Llamada a serviceService.list().subscribe() completada en ngOnInit'); // <-- Opcional
   }
 
   // Methods for edit and delete (adjust ID type based on your model)
