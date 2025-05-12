@@ -47,5 +47,5 @@ export default class DepartamentsRulerController {
         const theDepartmentRuler: DepartmentRuler = await DepartmentRuler.findOrFail(params.id);
             response.status(204);
             return await theDepartmentRuler.delete();
-    }
+    }
 }
