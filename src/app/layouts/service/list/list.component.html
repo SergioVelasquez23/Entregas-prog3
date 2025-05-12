@@ -1,9 +1,61 @@
-<div>
-  <h2>Lista de Servicios (Prueba Básica)</h2>
-  <div *ngIf="services.length === 0">
-    No hay servicios disponibles en la lista.
-  </div>
-  <div *ngFor="let service of services">
-    <p>Servicio ID: {{ service.id }}</p>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+</div>
+<div class="container-fluid mt--7">
+<div class="row">
+  <div class="col">
+    <div class="card shadow">
+      <div class="card-header bg-transparent">
+        <h3 class="mb-0">Services</h3>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush" >
+            
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Type</th>
+                <th scope="col">Status</th>
+                <th scope="col">Priority</th>
+                <th scope="col">Location</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Cost</th>
+                <th scope="col">Summary</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let service of services">
+                
+                <td>{{ service.id }}</td>
+                <td>{{ service.type }}</td>
+                <td>{{ service.status }}</td>
+                <td>{{ service.priority }}</td>
+                <td>{{ service.location }}</td>
+                <td>{{ service.start_date | date:'yyyy-MM-dd' }}</td>
+                <td>{{ service.end_date | date:'yyyy-MM-dd' }}</td>
+                <td>{{ service.cost }}</td>
+                <td>{{ service.summary }}</td>
+                <td>
+                  <button class="btn btn-sm btn-primary" (click)="edit(service.id)">Edit</button>
+                  <button class="btn btn-sm btn-danger" (click)="delete(service.id)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div *ngIf="services && services.length === 0" class="text-center mt-3">
+            <p>No services available.</p>
+          </div>
+
+          <div *ngIf="!services" class="text-center mt-3">
+             <p>Loading services...</p>
+           </div>
+
+        </div>
+      </div>
     </div>
+  </div>
+</div>
 </div>

@@ -1,5 +1,6 @@
 // service/list/list.component.ts
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Service } from 'src/app/models/service.model';
 import { ServiceService } from 'src/app/services/service.service';
 // import { Router } from '@angular/router'; // Import Router if you need navigation
@@ -11,10 +12,10 @@ import { ServiceService } from 'src/app/services/service.service';
 })
 export class ListServiceComponent implements OnInit {
 
-  services: Service[] = []; // Array to store services
+  services: Service[] ; // Array to store services
 
   // Inject the service and Router (if needed)
-  constructor(private serviceService: ServiceService /*, private router: Router*/) { }
+  constructor(private serviceService: ServiceService , private router: Router) { }
 
   ngOnInit(): void {
     console.log('Componente ListServiceComponent inicializado'); // <-- Opcional: confirma que ngOnInit se ejecuta
@@ -33,12 +34,15 @@ export class ListServiceComponent implements OnInit {
 
   // Methods for edit and delete (adjust ID type based on your model)
   edit(id: number) {
-    console.log('Editing Service ID:', id);
+    this.router.navigate(['/service/update',id])
     // Implement navigation
   }
 
   delete(id: number) {
     console.log('Deleting Service ID:', id);
     // Implement call to the delete service method
+  }
+  view(id: number){
+    this.router.navigate(['/servie/list'])
   }
 }

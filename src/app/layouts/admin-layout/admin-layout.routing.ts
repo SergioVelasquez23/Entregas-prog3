@@ -225,7 +225,7 @@ export const AdminLayoutRoutes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('src/app/layouts/service/service.module').then(m => m.ServiceRoutingModule)
+            loadChildren: () => import('src/app/layouts/service/service.module').then(m => m.ServiceModule)
           }
         ]
       },
