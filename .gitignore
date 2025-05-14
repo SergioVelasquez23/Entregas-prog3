@@ -159,4 +159,47 @@ buildNumber.properties
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
+# Excluir dependencias de Node.js
+**/node_modules/
+
+# Excluir dependencias de Maven
+**/target/
+
+# Excluir dependencias de Python
+**/__pycache__/
+**/*.pyc
+
+# Excluir archivos de configuración específicos del entorno
+**/.env
+**/env.ts
+
+# Excluir archivos de logs
+**/*.log
+
+# Excluir archivos generados automáticamente
+**/dist/
+**/build/
+**/coverage/
+
+# Excluir configuraciones específicas de IDEs
+**/.idea/
+**/.vscode/
+
+# Excluir archivos temporales del sistema operativo
+**/.DS_Store
+**/Thumbs.db
+
+# Excluir binarios y empaquetados
+**/*.jar
+**/*.war
+**/*.ear
+**/*.zip
+**/*.tar.gz
+**/*.rar
+
+# Excluir archivos de pruebas generados
+**/test-classes/
+**/generated-sources/
+**/generated-test-sources/
+
 # End of https://www.toptal.com/developers/gitignore/api/intellij,java,maven
